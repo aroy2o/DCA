@@ -691,52 +691,86 @@ const Home = () => {
     }
   }, [])
 
+  // Unified data with consistent warm color palette
   const achievements = [
-    { number: '500+', label: 'Students Trained', icon: Users },
-    { number: '15+', label: 'Years Experience', icon: Trophy },
-    { number: '50+', label: 'State Players', icon: Award },
-    { number: '6', label: 'Expert Coaches', icon: Star },
+    { 
+      number: '500+', 
+      label: 'Students Trained', 
+      icon: Users,
+      description: 'Champions developed with personalized training',
+      color: 'text-amber-600',
+      bgColor: 'from-amber-50 to-orange-100'
+    },
+    { 
+      number: '15+', 
+      label: 'Years Experience', 
+      icon: Trophy,
+      description: 'Decades of proven coaching excellence',
+      color: 'text-orange-600',
+      bgColor: 'from-orange-50 to-red-100'
+    },
+    { 
+      number: '50+', 
+      label: 'State Players', 
+      icon: Award,
+      description: 'State and national level representatives',
+      color: 'text-red-600',
+      bgColor: 'from-red-50 to-rose-100'
+    },
+    { 
+      number: '98%', 
+      label: 'Success Rate', 
+      icon: Star,
+      description: 'Guaranteed skill improvement methodology',
+      color: 'text-rose-600',
+      bgColor: 'from-rose-50 to-pink-100'
+    },
   ]
 
   const features = [
     {
       icon: Trophy,
       title: 'BCCI Certified Training',
-      description: 'Professional coaching with certified trainers following international standards.',
-      color: 'from-yellow-500 to-orange-600'
+      description: 'Professional coaching with certified trainers following international standards and modern methodologies.',
+      gradient: 'from-amber-500 to-orange-500',
+      bgGradient: 'from-amber-50 to-orange-50',
+      iconColor: 'text-amber-600'
     },
     {
       icon: Users,
       title: 'All Age Groups',
-      description: 'Specialized programs for juniors, youth, seniors, and women cricketers.',
-      color: 'from-green-500 to-green-600'
+      description: 'Specialized programs for juniors, youth, seniors, and women cricketers with tailored approaches.',
+      gradient: 'from-orange-500 to-red-500',
+      bgGradient: 'from-orange-50 to-red-50',
+      iconColor: 'text-orange-600'
     },
     {
       icon: Award,
       title: 'State-Level Success',
-      description: 'Over 50 students have represented at state and national levels.',
-      color: 'from-purple-500 to-purple-600'
+      description: 'Over 50 students have represented at state and national levels with our proven training methods.',
+      gradient: 'from-red-500 to-rose-500',
+      bgGradient: 'from-red-50 to-rose-50',
+      iconColor: 'text-red-600'
     },
     {
       icon: Star,
       title: 'Modern Facilities',
-      description: 'World-class infrastructure with latest training equipment and technology.',
-      color: 'from-red-500 to-red-600'
+      description: 'World-class infrastructure with latest training equipment and cutting-edge technology systems.',
+      gradient: 'from-rose-500 to-pink-500',
+      bgGradient: 'from-rose-50 to-pink-50',
+      iconColor: 'text-rose-600'
     }
   ]
 
     return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Simple Whitish Background */}
-      <div className="fixed inset-0 -z-50 bg-white"></div>
-
       {/* Award-Winning Animation System */}
       <AwardWinningAnimations />
 
-      {/* Enhanced Magic Cursor */}
+      {/* Enhanced Magic Cursor with warm theme */}
       <div
         ref={magicCursorRef}
-        className="fixed w-8 h-8 bg-[#002B5B]/20 rounded-full pointer-events-none z-[9999] mix-blend-multiply magic-cursor border-2 border-transparent backdrop-blur-sm"
+        className="fixed w-8 h-8 bg-amber-600/20 rounded-full pointer-events-none z-[9999] mix-blend-multiply magic-cursor border-2 border-transparent backdrop-blur-sm"
         style={{ 
           left: mousePosition.x - 16, 
           top: mousePosition.y - 16,
@@ -744,13 +778,12 @@ const Home = () => {
         }}
       />
 
-      {/* Simple Whitish Background */}
-      <div className="fixed inset-0 -z-50 bg-white"></div>
+      {/* Unified Background System */}
+      <div className="fixed inset-0 -z-50 bg-gradient-to-br from-white via-amber-50/5 to-orange-50/10"></div>
 
       {/* Award-Winning Animation System */}
       <AwardWinningAnimations />
 
-      
       {/* Hero Section */}
       <div className="hero-section">
         <Hero />
@@ -764,132 +797,133 @@ const Home = () => {
         <Stats achievements={achievements} />
       </div>
 
-      {/* Section Separator */}
-      {/* <SectionSeparator variant="wave" /> */}
-
-      {/* Features Section */}
+      {/* Features Section - seamless integration */}
       <div className="features-section">
         <Features features={features} />
       </div>
 
-      {/* Section Separator */}
-      {/* <SectionSeparator variant="wave" /> */}
-
-      {/* Revolutionary "Why Choose DCA" Section - Ultra Clean Design */}
-      <section ref={interactiveRef} className="why-choose-section py-24 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-        {/* Modern Background Pattern - Consistent with app */}
+      {/* Unified "Why Choose DCA" Section with consistent styling */}
+      <section ref={interactiveRef} className="why-choose-section py-24 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+        {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.03)_0%,transparent_50%)]"></div>
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          {/* Modern Header */}
+          {/* Unified Header Style */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 bg-white border border-gray-200 rounded-full text-gray-700 font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 group">
-              <Crown className="w-5 h-5 mr-2 text-amber-600" />
-              <span className="text-sm tracking-wide">WHY CHOOSE DCA</span>
-              <div className="w-2 h-2 bg-green-500 rounded-full ml-3"></div>
+            <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
+              <Crown className="w-5 h-5 mr-2 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <span className="text-sm tracking-wide font-bold">WHY CHOOSE DCA</span>
+              <div className="w-2 h-2 bg-amber-500 rounded-full ml-3 animate-pulse"></div>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Excellence Through
-              <span className="block text-amber-600 font-black mt-2">
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
                 Innovation
               </span>
             </h2>
             
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              Experience next-generation cricket training with our cutting-edge methodologies
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+              Experience next-generation cricket training with our cutting-edge methodologies and proven success rates.
             </p>
           </div>
 
-          {/* Modern Grid Layout */}
+          {/* Unified Grid Layout with warm color scheme */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
               {
                 icon: BarChart3,
                 title: "AI-Powered Analytics",
-                description: "Revolutionary performance tracking with machine learning insights and real-time biomechanical analysis",
-                gradient: "from-blue-500 to-blue-600",
-                accent: "blue"
+                description: "Revolutionary performance tracking with machine learning insights and real-time biomechanical analysis for precision improvement.",
+                iconColor: "text-amber-600",
+                bgGradient: "from-amber-50 to-orange-100",
+                hoverColor: "hover:border-amber-500/20"
               },
               {
                 icon: Target,
                 title: "Precision Training",
-                description: "Millimeter-perfect training drills with haptic feedback technology and personalized skill development",
-                gradient: "from-emerald-500 to-emerald-600",
-                accent: "emerald"
+                description: "Millimeter-perfect training drills with haptic feedback technology and personalized skill development programs.",
+                iconColor: "text-orange-600",
+                bgGradient: "from-orange-50 to-red-100",
+                hoverColor: "hover:border-orange-500/20"
               },
               {
                 icon: Medal,
                 title: "Elite Coaching",
-                description: "One-on-one guidance from international champions and former national team players",
-                gradient: "from-amber-500 to-amber-600",
-                accent: "amber"
+                description: "One-on-one guidance from international champions and former national team players with proven methodologies.",
+                iconColor: "text-red-600",
+                bgGradient: "from-red-50 to-rose-100",
+                hoverColor: "hover:border-red-500/20"
               },
               {
                 icon: Rocket,
-                title: "Advanced Tech",
-                description: "Cutting-edge biomechanics lab with motion capture technology for technique optimization",
-                gradient: "from-purple-500 to-purple-600",
-                accent: "purple"
+                title: "Advanced Technology",
+                description: "Cutting-edge biomechanics lab with motion capture technology for technique optimization and analysis.",
+                iconColor: "text-rose-600",
+                bgGradient: "from-rose-50 to-pink-100",
+                hoverColor: "hover:border-rose-500/20"
               },
               {
                 icon: Trophy,
                 title: "Match Preparation",
-                description: "Advanced match simulation with VR technology and psychological conditioning programs",
-                gradient: "from-red-500 to-red-600",
-                accent: "red"
+                description: "Advanced match simulation with VR technology and psychological conditioning programs for competitive edge.",
+                iconColor: "text-pink-600",
+                bgGradient: "from-pink-50 to-pink-100",
+                hoverColor: "hover:border-pink-500/20"
               },
               {
                 icon: Activity,
                 title: "Success Methodology",
-                description: "Data-driven methodology with 98.7% success rate and guaranteed skill advancement tracking",
-                gradient: "from-indigo-500 to-indigo-600",
-                accent: "indigo"
+                description: "Data-driven methodology with 98% success rate and guaranteed skill advancement tracking systems.",
+                iconColor: "text-amber-700",
+                bgGradient: "from-amber-100 to-orange-100",
+                hoverColor: "hover:border-amber-500/20"
               }
             ].map((feature, index) => (
               <div 
-                key={index} 
-                className="why-choose-item group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-gray-200 hover:border-gray-300"
+                key={index}
+                className={`group bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-2xl p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 hover:scale-105 ${feature.hoverColor}`}
               >
-                <div className={`w-14 h-14 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  <feature.icon className="w-7 h-7 text-white" />
+                <div className={`w-16 h-16 bg-gradient-to-br ${feature.bgGradient} rounded-2xl mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                  <feature.icon className={`w-8 h-8 ${feature.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
                 </div>
                 
-                <h3 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-slate-900">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-sm">
+                
+                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {feature.description}
                 </p>
                 
-                <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${feature.gradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-2xl`}></div>
+                {/* Unified Hover Glow Effect */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.bgGradient} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10`}></div>
               </div>
             ))}
           </div>
 
-          {/* Modern CTA */}
+          {/* Unified CTA Section */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-4 p-2 bg-white rounded-2xl border border-gray-200 shadow-lg">
+            <div className="inline-flex items-center gap-4 p-2 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl shadow-lg shadow-amber-500/10">
               <Link
                 to="/programs"
-                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
               >
-                <Trophy className="w-5 h-5 mr-3" />
-                <span>START YOUR JOURNEY</span>
-                <ArrowRight className="w-5 h-5 ml-3" />
+                <Trophy className="w-5 h-5 mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-black">START YOUR JOURNEY</span>
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
               
-              <Link
-                to="/about"
-                className="inline-flex items-center px-8 py-4 text-slate-700 font-semibold hover:text-slate-900 transition-colors"
+              <a
+                href="#contact"
+                className="group relative inline-flex items-center px-8 py-4 border-2 border-amber-300 text-amber-800 font-bold rounded-xl hover:bg-amber-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
-                <Play className="w-5 h-5 mr-2" />
-                <span>LEARN MORE</span>
-              </Link>
+                <Calendar className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-black">BOOK TRIAL</span>
+              </a>
             </div>
           </div>
         </div>
@@ -898,49 +932,51 @@ const Home = () => {
       {/* Section Separator */}
       <SectionSeparator variant="wave" />
 
-      {/* Clean CTA Section */}
-      <section ref={ctaRef} className="cta-section py-32 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-        {/* Simple Background - Consistent with app */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white">
-          {/* Simple floating elements */}
+      {/* Unified CTA Section with warm color scheme */}
+      <section ref={ctaRef} className="cta-section py-32 relative overflow-hidden bg-gradient-to-br from-orange-50/30 via-white to-red-50/20">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(234,88,12,0.02)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#EA580C_1px,transparent_1px),linear-gradient(to_bottom,#EA580C_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+          {/* Floating elements with consistent warm style */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 left-20 w-32 h-32 bg-gray-200 rounded-full opacity-20"></div>
-            <div className="absolute bottom-20 right-20 w-40 h-40 bg-gray-200 rounded-full opacity-20"></div>
-            <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gray-200 rounded-full opacity-20"></div>
-            <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-gray-200 rounded-full opacity-20"></div>
+            <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-amber-100 to-orange-200 rounded-full opacity-10"></div>
+            <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-orange-100 to-red-200 rounded-full opacity-10"></div>
+            <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-red-100 to-rose-200 rounded-full opacity-10"></div>
+            <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full opacity-10"></div>
           </div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <div className="max-w-5xl mx-auto">
-            {/* Clean Heading Section */}
+            {/* Unified Heading Section */}
             <div className="mb-12">
-              <div className="inline-flex items-center px-6 py-3 bg-white border border-gray-200 rounded-full text-gray-800 font-semibold mb-8 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <Rocket className="w-5 h-5 mr-2 text-yellow-600 group-hover:scale-110 transition-transform duration-300" />
-                <span>Ready to Begin?</span>
-                <div className="w-2 h-2 bg-green-500 rounded-full ml-2"></div>
+              <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transition-all duration-500 group">
+                <Rocket className="w-5 h-5 mr-2 text-orange-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+                <span className="font-bold">Ready to Begin?</span>
+                <div className="w-2 h-2 bg-orange-500 rounded-full ml-2 animate-pulse"></div>
               </div>
               
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-800 mb-8 leading-tight">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-8 leading-tight">
                 Ready to Start Your
-                <span className="block text-yellow-600 mt-2">
+                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
                   Cricket Journey?
                 </span>
               </h2>
               
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-medium max-w-4xl mx-auto">
                 Join India's premier cricket academy and train with the best coaches in West Bengal.
-                <span className="block font-bold text-yellow-600 mt-3 text-2xl">
+                <span className="block font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mt-3 text-2xl">
                   🏏 Book your free trial session today!
                 </span>
               </p>
             </div>
 
-            {/* Clean Action Buttons */}
+            {/* Unified Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
               <Link
                 to="/programs"
-                className="cta-button group relative inline-flex items-center px-12 py-6 bg-yellow-600 text-white font-bold text-lg rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 transform overflow-hidden hover:bg-yellow-700"
+                className="cta-button group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-lg rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-500 hover:scale-105 transform overflow-hidden"
               >
                 <Trophy className="w-6 h-6 mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
                 <span className="font-black">Explore Programs</span>
@@ -949,7 +985,7 @@ const Home = () => {
               
               <a
                 href="#contact"
-                className="cta-button group relative inline-flex items-center px-12 py-6 border-2 border-gray-300 text-gray-800 font-bold text-lg rounded-2xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="cta-button group relative inline-flex items-center px-12 py-6 bg-white/95 backdrop-blur-xl border border-orange-200/50 text-orange-800 font-bold text-lg rounded-2xl hover:bg-orange-50 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105"
               >
                 <Play className="w-6 h-6 mr-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
                 <span className="font-black">Book Free Trial</span>
@@ -957,30 +993,32 @@ const Home = () => {
               </a>
             </div>
             
-            {/* Clean Activity Indicator */}
-            <div className="inline-flex items-center px-8 py-4 bg-white border border-gray-200 rounded-2xl text-gray-800 mb-12 hover:bg-gray-50 transition-all duration-300 shadow-lg">
+            {/* Unified Activity Indicator */}
+            <div className="inline-flex items-center px-8 py-4 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 mb-12 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10">
               <div className="relative mr-4">
-                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse"></div>
               </div>
-              <Activity className="w-5 h-5 mr-2 text-green-500" />
+              <Activity className="w-5 h-5 mr-2 text-orange-500" />
               <span className="font-bold text-lg">243 active students training right now</span>
-              <TrendingUp className="w-5 h-5 ml-3 text-yellow-600" />
+              <TrendingUp className="w-5 h-5 ml-3 text-amber-600 animate-bounce" />
             </div>
 
-            {/* Clean Success Metrics Grid */}
+            {/* Unified Success Metrics Grid with warm colors */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
               {[
-                { number: "98%", label: "Success Rate", icon: Target, color: "text-green-600" },
-                { number: "500+", label: "Champions Trained", icon: Trophy, color: "text-yellow-600" },
-                { number: "50+", label: "State Players", icon: Award, color: "text-orange-600" },
-                { number: "15+", label: "Years Excellence", icon: Star, color: "text-red-600" }
+                { number: "98%", label: "Success Rate", icon: Target, iconColor: "text-amber-600", bgGradient: "from-amber-50 to-orange-100" },
+                { number: "500+", label: "Champions Trained", icon: Trophy, iconColor: "text-orange-600", bgGradient: "from-orange-50 to-red-100" },
+                { number: "50+", label: "State Players", icon: Award, iconColor: "text-red-600", bgGradient: "from-red-50 to-rose-100" },
+                { number: "15+", label: "Years Excellence", icon: Star, iconColor: "text-rose-600", bgGradient: "from-rose-50 to-pink-100" }
               ].map((metric, index) => (
                 <div 
                   key={index} 
-                  className="group bg-white rounded-2xl p-6 border border-gray-200 hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105"
+                  className="group bg-white/95 backdrop-blur-xl border border-orange-200/30 rounded-2xl p-6 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:-translate-y-1 hover:scale-105"
                 >
-                  <metric.icon className={`w-8 h-8 ${metric.color} mb-3 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`} />
-                  <div className="text-3xl lg:text-4xl font-black text-gray-800 mb-2 group-hover:scale-105 transition-transform duration-300">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${metric.bgGradient} rounded-2xl mb-4 mx-auto flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                    <metric.icon className={`w-6 h-6 ${metric.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-black text-gray-900 mb-2 group-hover:scale-105 transition-transform duration-300">
                     {metric.number}
                   </div>
                   <div className="text-gray-600 font-semibold text-sm lg:text-base">
@@ -992,15 +1030,16 @@ const Home = () => {
           </div>
         </div>
         
-        {/* Simple particles */}
+        {/* Consistent particles with warm colors */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(12)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-gray-400 rounded-full opacity-20"
+              className="absolute w-2 h-2 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full opacity-10 animate-pulse"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`
               }}
             ></div>
           ))}

@@ -179,7 +179,7 @@ const Hero = () => {
   return (
     <section 
       ref={heroRef} 
-      className="relative mt-19 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-white"
+      className="relative mt-25 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-white"
     >
       {/* Unique Hero Background System - Distinguished from other sections */}
       <div className="absolute inset-0 overflow-hidden">
