@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Trophy, Calendar, ArrowDown, Star, CheckCircle, Users, Award, Target, Zap, Shield, Flame, Sparkles } from 'lucide-react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { BUTTON_STYLES, TEXT_STYLES, LAYOUT_STYLES } from '../constants/styles'
+import { BUTTON_STYLES, TEXT_STYLES, LAYOUT_STYLES } from '../../constants/styles'
 
 gsap.registerPlugin(ScrollTrigger)
 

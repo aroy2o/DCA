@@ -5,7 +5,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { programsData } from '../data/programs'
 import { ArrowRight, ArrowDown, Users, Trophy, Calendar, Star, Award, Target, CheckCircle, Zap, Shield, Crown, Play, Phone } from 'lucide-react'
-import AwardWinningAnimations from '../components/AwardWinningAnimations'
 
 gsap.registerPlugin(ScrollTrigger)
 

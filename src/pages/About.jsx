@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Trophy, Users, Award, Target, Star, Quote, Calendar, MapPin, CheckCircle, Heart, Zap, Shield, ArrowRight, Phone, Mail } from 'lucide-react'
-import AwardWinningAnimations from '../components/AwardWinningAnimations'
-import ParticleSystem from '../components/ParticleSystem'
+import AwardWinningAnimations from '../components/Home/AwardWinningAnimations'
+import ParticleSystem from '../components/Home/ParticleSystem'
 
 gsap.registerPlugin(ScrollTrigger)
 

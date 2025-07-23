@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ParticleSystem from './ParticleSystem'
-import { CARD_STYLES, TEXT_STYLES } from '../constants/styles'
+import { CARD_STYLES, TEXT_STYLES } from '../../constants/styles'
 
 gsap.registerPlugin(ScrollTrigger)
 
