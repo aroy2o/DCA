@@ -1,0 +1,209 @@
+/* 🏏 Doars Cricket Academy Clean Brand Colors */
+
+:root {
+  /* Primary Clean Colors */
+  --color-white: #FFFFFF;
+  --color-light-gray: #F9FAFB;
+  --color-soft-gray: #F3F4F6;
+  --color-medium-gray: #E5E7EB;
+  --color-text-gray: #374151;
+  --color-golden: #D97706;
+  --color-cricket-red: #DC2626;
+  --color-success-green: #059669;
+  
+  /* Extended Clean Palette */
+  --color-golden-light: #F59E0B;
+  --color-golden-dark: #B45309;
+  --color-red-light: #EF4444;
+  --color-red-dark: #B91C1C;
+  --color-green-light: #10B981;
+  --color-green-dark: #047857;
+  
+  /* Semantic Colors */
+  --color-success: #059669;
+  --color-warning: #F59E0B;
+  --color-error: #DC2626;
+  --color-info: #3B82F6;
+  
+  /* Clean Gray Scale */
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+}
+
+/* Clean Background Utilities */
+.bg-white { background-color: var(--color-white); }
+.bg-light-gray { background-color: var(--color-light-gray); }
+.bg-soft-gray { background-color: var(--color-soft-gray); }
+.bg-medium-gray { background-color: var(--color-medium-gray); }
+.bg-golden { background-color: var(--color-golden); }
+.bg-cricket-red { background-color: var(--color-cricket-red); }
+.bg-success-green { background-color: var(--color-success-green); }
+
+/* Clean Text Colors */
+.text-white { color: var(--color-white); }
+.text-gray { color: var(--color-text-gray); }
+.text-golden { color: var(--color-golden); }
+.text-cricket-red { color: var(--color-cricket-red); }
+.text-success-green { color: var(--color-success-green); }
+
+/* Clean Border Colors */
+.border-white { border-color: var(--color-white); }
+.border-light-gray { border-color: var(--color-light-gray); }
+.border-medium-gray { border-color: var(--color-medium-gray); }
+.border-golden { border-color: var(--color-golden); }
+.border-cricket-red { border-color: var(--color-cricket-red); }
+
+/* Clean Gradient Utilities (using warm colors only) */
+.bg-gradient-warm {
+  background: linear-gradient(135deg, var(--color-golden) 0%, var(--color-cricket-red) 100%);
+}
+
+.bg-gradient-soft {
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-light-gray) 100%);
+}
+
+.bg-gradient-subtle {
+  background: linear-gradient(135deg, var(--color-light-gray) 0%, var(--color-soft-gray) 100%);
+}
+
+/* Clean Text Gradients */
+.text-gradient-warm {
+  background: linear-gradient(135deg, var(--color-golden) 0%, var(--color-cricket-red) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-success {
+  background: linear-gradient(135deg, var(--color-success-green) 0%, var(--color-golden) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, var(--color-text-gray) 0%, var(--gray-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Clean Shadow Utilities */
+.shadow-clean {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-clean-lg {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-golden {
+  box-shadow: 0 10px 25px rgba(217, 119, 6, 0.2);
+}
+
+.shadow-red {
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+}
+
+.shadow-green {
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.2);
+}
+
+/* Clean Button Color Schemes */
+.btn-golden {
+  background: var(--color-golden);
+  color: var(--color-white);
+}
+
+.btn-golden:hover {
+  background: var(--color-golden-dark);
+}
+
+.btn-red {
+  background: var(--color-cricket-red);
+  color: var(--color-white);
+}
+
+.btn-red:hover {
+  background: var(--color-red-dark);
+}
+
+.btn-green {
+  background: var(--color-success-green);
+  color: var(--color-white);
+}
+
+.btn-green:hover {
+  background: var(--color-green-dark);
+}
+
+.btn-outline {
+  background: var(--color-white);
+  border: 2px solid var(--color-medium-gray);
+  color: var(--color-text-gray);
+}
+
+.btn-outline:hover {
+  background: var(--color-light-gray);
+  border-color: var(--color-golden);
+}
+
+/* Clean Card Color Schemes */
+.card-clean {
+  background: var(--color-white);
+  border: 1px solid var(--color-medium-gray);
+}
+
+.card-light {
+  background: var(--color-light-gray);
+  border: 1px solid var(--color-soft-gray);
+}
+
+.card-golden {
+  background: linear-gradient(135deg, var(--color-golden-light) 0%, var(--color-golden) 100%);
+  color: var(--color-white);
+}
+
+/* Clean Hover States */
+.hover-golden:hover {
+  background-color: var(--color-golden);
+  color: var(--color-white);
+}
+
+.hover-lift-clean:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-clean-lg);
+}
+
+/* Clean Focus States */
+.focus-golden:focus {
+  outline: 2px solid var(--color-golden);
+  outline-offset: 2px;
+}
+
+.focus-clean:focus {
+  outline: 2px solid var(--color-text-gray);
+  outline-offset: 2px;
+}
+
+/* Remove any remaining blue/dark utilities */
+.no-blue, .no-dark {
+  background: var(--color-white) !important;
+  color: var(--color-text-gray) !important;
+}
+
+/* Clean responsive helpers */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-default: var(--color-white);
+    --text-default: var(--color-text-gray);
+  }
+}
