@@ -5,7 +5,8 @@
 }
 
 /* Enhanced button styles for cricket academy theme */
-.cricket-btn-primary {
+.cricket-btn-primary,
+.btn-primary {
   background: linear-gradient(135deg, #FFD600 0%, #e6c100 100%);
   border: 2px solid transparent;
   background-clip: padding-box;
@@ -15,7 +16,8 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cricket-btn-primary::before {
+.cricket-btn-primary::before,
+.btn-primary::before {
   content: '';
   position: absolute;
   top: 0;
@@ -26,11 +28,13 @@
   transition: left 0.5s;
 }
 
-.cricket-btn-primary:hover::before {
+.cricket-btn-primary:hover::before,
+.btn-primary:hover::before {
   left: 100%;
 }
 
-.cricket-btn-primary:hover {
+.cricket-btn-primary:hover,
+.btn-primary:hover {
   background: linear-gradient(135deg, #e6c100 0%, #ccac00 100%);
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 15px 30px rgba(255, 214, 0, 0.4);
@@ -172,6 +176,22 @@
     0 25px 50px -12px rgba(251, 146, 60, 0.25),
     0 0 40px rgba(251, 146, 60, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Auth page specific styles */
+.auth-form-input:focus {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 0 0 4px rgba(245, 158, 11, 0.1),
+    0 10px 25px rgba(245, 158, 11, 0.15);
+}
+
+.auth-toggle-active {
+  background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+  transform: scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .hover\:shadow-3xl:hover {

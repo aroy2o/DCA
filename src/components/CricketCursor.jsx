@@ -783,13 +783,7 @@ const CricketCursor = () => {
     <>
       {isLargeScreen && (
         <>
-          <button
-            ref={buttonRef}
-            onClick={() => setIsActive(!isActive)}
-            className={getButtonClasses()}
-          >
-            {isActive ? '🏏 Disable' : '🏏 Enable'}
-          </button>
+          
           
           {isActive && (
             <div className="fixed bottom-20 right-6 bg-black/90 text-white p-4 rounded-xl shadow-xl z-[9996] backdrop-blur-sm max-w-[300px] border border-white/20">
