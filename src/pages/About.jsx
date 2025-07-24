@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Trophy, Users, Award, Target, Star, Quote, Calendar, MapPin, CheckCircle, Heart, Zap, Shield, ArrowRight, Phone, Mail } from 'lucide-react'
+import { Trophy, Users, Award, Target, Star, Quote, Calendar, MapPin, CheckCircle, Heart, Zap, Shield, ArrowRight, Phone, Mail, Crown } from 'lucide-react'
 import AwardWinningAnimations from '../components/Home/AwardWinningAnimations'
 import ParticleSystem from '../components/Home/ParticleSystem'
+import ChampionSuccessStories from '../components/Home/ChampionSuccessStories'
+import SectionSeparator from '../components/Home/SectionSeparator'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -13,7 +15,6 @@ const About = () => {
   const missionRef = useRef(null)
   const timelineRef = useRef(null)
   const coachesRef = useRef(null)
-  const testimonialsRef = useRef(null)
   const ctaRef = useRef(null)
 
   const timeline = [
@@ -61,44 +62,13 @@ const About = () => {
     }
   ]
 
-  const testimonials = [
-    {
-      name: 'Rahul Sharma',
-      role: 'West Bengal U-19 Team',
-      quote: 'DCA transformed my cricket journey. The coaches here believe in every student and provide personalized attention that makes all the difference.',
-      rating: 5,
-      initials: 'RS'
-    },
-    {
-      name: 'Priya Chatterjee',
-      role: 'Bengal Women Team',
-      quote: 'As a female cricketer, I found the most supportive environment at DCA. They truly empower women in cricket.',
-      rating: 5,
-      initials: 'PC'
-    },
-    {
-      name: 'Arjun Das',
-      role: 'District Level Player',
-      quote: 'From a complete beginner to representing my district - DCA made this journey possible with their excellent training programs.',
-      rating: 5,
-      initials: 'AD'
-    },
-    {
-      name: 'Sneha Roy',
-      role: 'Parent',
-      quote: 'My son has grown not just as a cricketer but as a confident individual. The values taught here go beyond cricket.',
-      rating: 5,
-      initials: 'SR'
-    }
-  ]
-
   const achievements = [
-    { number: '15+', label: 'Years of Excellence', icon: Trophy, color: 'from-blue-500 to-blue-600' },
-    { number: '500+', label: 'Students Trained', icon: Users, color: 'from-green-500 to-green-600' },
-    { number: '50+', label: 'State Level Players', icon: Star, color: 'from-yellow-500 to-yellow-600' },
-    { number: '6', label: 'Expert Coaches', icon: Award, color: 'from-purple-500 to-purple-600' },
-    { number: '100%', label: 'BCCI Certified', icon: CheckCircle, color: 'from-red-500 to-red-600' },
-    { number: '25+', label: 'Awards Won', icon: Trophy, color: 'from-indigo-500 to-indigo-600' }
+    { number: '15+', label: 'Years of Excellence', icon: Trophy, color: 'from-amber-500 to-orange-600', bgColor: 'from-amber-50 to-orange-100' },
+    { number: '500+', label: 'Students Trained', icon: Users, color: 'from-orange-500 to-red-600', bgColor: 'from-orange-50 to-red-100' },
+    { number: '50+', label: 'State Level Players', icon: Star, color: 'from-red-500 to-rose-600', bgColor: 'from-red-50 to-rose-100' },
+    { number: '6', label: 'Expert Coaches', icon: Award, color: 'from-rose-500 to-pink-600', bgColor: 'from-rose-50 to-pink-100' },
+    { number: '100%', label: 'BCCI Certified', icon: CheckCircle, color: 'from-pink-500 to-pink-600', bgColor: 'from-pink-50 to-pink-100' },
+    { number: '25+', label: 'Awards Won', icon: Trophy, color: 'from-amber-600 to-orange-600', bgColor: 'from-amber-100 to-orange-100' }
   ]
 
   const coaches = [
@@ -109,7 +79,8 @@ const About = () => {
       specialty: 'Batting & Leadership',
       achievements: 'Former Ranji Player, BCCI Level A Coach',
       initials: 'RK',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-amber-500 to-orange-600',
+      bgColor: 'from-amber-50 to-orange-100'
     },
     {
       name: 'Amit Ghosh',
@@ -118,7 +89,8 @@ const About = () => {
       specialty: 'Fast Bowling & Pace',
       achievements: 'Ex-Bengal Fast Bowler, 200+ Wickets',
       initials: 'AG',
-      color: 'from-green-500 to-green-600'
+      color: 'from-orange-500 to-red-600',
+      bgColor: 'from-orange-50 to-red-100'
     },
     {
       name: 'Sunita Devi',
@@ -127,7 +99,8 @@ const About = () => {
       specialty: 'All-Round Training',
       achievements: 'Former Bengal Women Captain',
       initials: 'SD',
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-red-500 to-rose-600',
+      bgColor: 'from-red-50 to-rose-100'
     }
   ]
 
@@ -136,25 +109,29 @@ const About = () => {
       icon: Trophy,
       title: 'Excellence',
       description: 'Striving for the highest standards in every aspect of cricket training and development.',
-      color: 'from-blue-500 to-blue-600'
+      color: 'from-amber-500 to-orange-600',
+      bgColor: 'from-amber-50 to-orange-100'
     },
     {
       icon: Heart,
       title: 'Passion',
       description: 'Fostering a deep love for cricket while maintaining the joy and spirit of the game.',
-      color: 'from-red-500 to-red-600'
+      color: 'from-orange-500 to-red-600',
+      bgColor: 'from-orange-50 to-red-100'
     },
     {
       icon: Shield,
       title: 'Integrity',
       description: 'Building character through honest play, ethical conduct, and respect for all.',
-      color: 'from-green-500 to-green-600'
+      color: 'from-red-500 to-rose-600',
+      bgColor: 'from-red-50 to-rose-100'
     },
     {
       icon: Zap,
       title: 'Innovation',
       description: 'Embracing modern training techniques while respecting cricket\'s rich traditions.',
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-rose-500 to-pink-600',
+      bgColor: 'from-rose-50 to-pink-100'
     }
   ]
 
@@ -184,7 +161,7 @@ const About = () => {
     })
 
     // Section animations
-    const sections = [missionRef, timelineRef, coachesRef, testimonialsRef, ctaRef]
+    const sections = [missionRef, timelineRef, coachesRef, ctaRef]
     sections.forEach((ref, index) => {
       if (ref.current) {
         gsap.fromTo(ref.current.children,
@@ -231,95 +208,148 @@ const About = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Unified Global Background System */}
-      <div className="fixed inset-0 -z-50">
-        {/* Main Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white to-blue-50/80"></div>
-        
-        {/* Animated Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="w-full h-full" style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}></div>
-        </div>
-        
-        {/* Floating Background Elements */}
-        <div className="absolute top-10 right-20 w-96 h-96 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-br from-red-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-green-500/3 to-teal-500/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
-        
-        {/* Interactive Background Orbs */}
-        <div className="absolute top-32 left-10 w-32 h-32 bg-gradient-to-br from-blue-500/8 to-purple-500/8 rounded-3xl blur-xl parallax-element"></div>
-        <div className="absolute bottom-40 right-10 w-24 h-24 bg-gradient-to-br from-red-500/8 to-pink-500/8 rounded-2xl blur-xl parallax-element"></div>
-        <div className="absolute top-2/3 left-1/3 w-20 h-20 bg-gradient-to-br from-green-500/8 to-teal-500/8 rounded-xl blur-xl parallax-element"></div>
-        <div className="absolute top-1/4 right-1/3 w-16 h-16 bg-gradient-to-br from-yellow-500/8 to-orange-500/8 rounded-lg blur-xl parallax-element"></div>
-      </div>
-
       {/* Award-Winning Animation System */}
       <AwardWinningAnimations />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <ParticleSystem count={15} color="#3b82f6" />
-        
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/5 to-red-600/10"></div>
-        
-        <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-          <div className="inline-flex items-center px-6 py-3 glass-card rounded-full text-blue-700 font-semibold mb-8 shadow-lg interactive-card">
-            <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-            <span>About Our Legacy</span>
-            <div className="w-2 h-2 bg-blue-500 rounded-full ml-3 animate-pulse"></div>
+      {/* Unified Background System - Consistent with Home */}
+      <div className="fixed inset-0 -z-50 bg-gradient-to-br from-white via-amber-50/5 to-orange-50/10"></div>
+
+      {/* Hero Section - Consistent with Home styling */}
+      <section className="relative mt-25 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-white">
+        {/* Consistent Hero Background System */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Hero-specific subtle pattern */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,119,6,0.03)_0%,transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(5,150,105,0.02)_0%,transparent_50%)]"></div>
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-8">
-            Crafting Cricket
-            <span className="gradient-text block">Champions Since 2009</span>
-          </h1>
+          {/* Consistent grid pattern */}
+          <div className="absolute inset-0 opacity-[0.015]">
+            <div className="h-full w-full bg-[linear-gradient(45deg,#D97706_1px,transparent_1px),linear-gradient(-45deg,#059669_1px,transparent_1px)] bg-[size:6rem_6rem]"></div>
+          </div>
           
-          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium mb-12">
-            From humble beginnings to becoming West Bengal's premier cricket academy, 
-            we've been nurturing talent with passion, dedication, and world-class training methodologies.
-          </p>
+          {/* Consistent floating elements */}
+          <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-amber-400/6 to-orange-400/6 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-32 right-32 w-80 h-80 bg-gradient-to-br from-green-400/5 to-emerald-400/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+          <div className="absolute top-1/3 left-1/3 w-44 h-44 bg-gradient-to-br from-red-400/4 to-pink-400/4 rounded-3xl blur-2xl rotate-45"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-36 h-36 bg-gradient-to-br from-gray-300/8 to-slate-300/8 rounded-2xl blur-xl rotate-12"></div>
+          
+          {/* Consistent accent lines */}
+          <div className="absolute top-0 left-1/5 w-px h-full bg-gradient-to-b from-transparent via-amber-200/30 to-transparent"></div>
+          <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-green-200/30 to-transparent"></div>
+          <div className="absolute left-0 top-2/5 h-px w-full bg-gradient-to-r from-transparent via-red-200/30 to-transparent"></div>
+          <div className="absolute right-0 bottom-1/3 h-px w-2/3 bg-gradient-to-l from-transparent via-gray-200/30 to-transparent"></div>
+        </div>
+        
+        <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+          <div className="max-w-6xl mx-auto">
+            {/* Consistent Hero Badge */}
+            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
+              <div className="relative flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                </div>
+                <span className="text-xl font-black text-gray-800 tracking-wider uppercase">
+                  🏏 About Our Legacy
+                </span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                  <div className="w-4 h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Consistent Typography */}
+            <div className="mb-16">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
+                <span className="block text-gray-900 mb-6 drop-shadow-sm">
+                  Crafting Cricket
+                </span>
+                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
+                  Champions Since
+                </span>
+                <span className="block text-gray-800 text-5xl md:text-6xl lg:text-7xl">
+                  2009
+                </span>
+              </h1>
+            </div>
+            
+            {/* Consistent Subtitle */}
+            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-20">
+              From humble beginnings to becoming 
+              <span className="text-amber-600 font-black"> West Bengal's most elite</span> cricket academy with 
+              <span className="text-green-600 font-black"> 15+ years of proven excellence</span> and 
+              <span className="text-red-600 font-black"> 500+ champion cricketers</span>
+            </p>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-6 mb-16">
-            <div className="inline-flex items-center px-4 py-2 glass-card rounded-full text-green-600 font-medium shadow-md">
-              <CheckCircle className="w-4 h-4 mr-2" />
-              BCCI Certified
-            </div>
-            <div className="inline-flex items-center px-4 py-2 glass-card rounded-full text-yellow-600 font-medium shadow-md">
-              <Trophy className="w-4 h-4 mr-2" />
-              Award Winning
-            </div>
-            <div className="inline-flex items-center px-4 py-2 glass-card rounded-full text-blue-600 font-medium shadow-md">
-              <Star className="w-4 h-4 mr-2" />
-              500+ Students
+            {/* Consistent Trust Indicators */}
+            <div className="flex flex-wrap justify-center gap-8 mb-20">
+              {[
+                { icon: CheckCircle, text: 'BCCI CERTIFIED', color: 'from-green-500 to-emerald-600' },
+                { icon: Trophy, text: 'AWARD WINNING', color: 'from-amber-500 to-orange-600' },
+                { icon: Star, text: '500+ CHAMPIONS', color: 'from-red-500 to-pink-600' }
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="group flex items-center px-10 py-6 bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100/50 hover:border-gray-200/80 hover:scale-105"
+                >
+                  <div className={`w-14 h-14 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mr-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
+                    <item.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <span className="text-gray-800 font-black text-lg tracking-wider">{item.text}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
         
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full parallax-element"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 bg-red-500/10 rounded-full parallax-element"></div>
-        <div className="absolute top-1/2 right-20 w-12 h-12 bg-purple-500/10 rounded-full parallax-element"></div>
+        {/* Consistent Decorative Elements */}
+        <div className="absolute top-1/2 left-8 w-2 h-40 bg-gradient-to-b from-transparent via-amber-400/50 to-transparent rounded-full"></div>
+        <div className="absolute top-1/2 right-8 w-2 h-40 bg-gradient-to-b from-transparent via-green-400/50 to-transparent rounded-full"></div>
+        
+        {/* Consistent cricket-themed decorative icons */}
+        <div className="absolute bottom-32 left-32 opacity-10">
+          <div className="text-9xl filter grayscale">🏏</div>
+        </div>
+        <div className="absolute top-32 right-32 opacity-10">
+          <div className="text-7xl filter grayscale">🏆</div>
+        </div>
+        
+        {/* Consistent corner accent elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 border-l-4 border-t-4 border-amber-400/40 rounded-tl-3xl"></div>
+        <div className="absolute top-10 right-10 w-20 h-20 border-r-4 border-t-4 border-green-400/40 rounded-tr-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-20 h-20 border-l-4 border-b-4 border-red-400/40 rounded-bl-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-20 h-20 border-r-4 border-b-4 border-gray-400/40 rounded-br-3xl"></div>
       </section>
 
-      {/* Achievement Stats */}
-      <section ref={statsRef} className="py-20 lg:py-24 relative">
-        <ParticleSystem count={8} color="#ef4444" />
+      {/* Achievement Stats - Consistent styling */}
+      <section ref={statsRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Consistent Header Style */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+            <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
+              <Crown className="w-5 h-5 mr-2 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <span className="text-sm tracking-wide font-bold">OUR JOURNEY</span>
+              <div className="w-2 h-2 bg-amber-500 rounded-full ml-3 animate-pulse"></div>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Our Journey in
-              <span className="gradient-text block">Numbers</span>
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
+                Numbers
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+            
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
               Every statistic tells a story of dedication, growth, and the relentless pursuit of excellence.
             </p>
           </div>
@@ -330,7 +360,7 @@ const About = () => {
               return (
                 <div
                   key={index}
-                  className="text-center p-6 lg:p-8 glass-card rounded-3xl shadow-premium hover:shadow-premium-hover transition-all duration-500 interactive-card magnetic-hover"
+                  className="text-center p-6 lg:p-8 bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card magnetic-hover"
                 >
                   <div className={`w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${achievement.color} rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-lg`}>
                     <Icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
@@ -351,26 +381,53 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Values */}
-      <section ref={missionRef} className="py-20 lg:py-24 relative">
+      {/* Mission & Values - Consistent styling */}
+      <section ref={missionRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,119,6,0.03)_0%,transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(5,150,105,0.02)_0%,transparent_50%)]"></div>
+          </div>
+          <div className="absolute inset-0 opacity-[0.015]">
+            <div className="h-full w-full bg-[linear-gradient(45deg,#D97706_1px,transparent_1px),linear-gradient(-45deg,#059669_1px,transparent_1px)] bg-[size:6rem_6rem]"></div>
+          </div>
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
+          {/* Consistent Header Style */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 glass-card rounded-full text-blue-700 font-semibold mb-8 shadow-lg interactive-card">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-              <span>Our Foundation</span>
-              <div className="w-2 h-2 bg-blue-500 rounded-full ml-3 animate-pulse"></div>
+            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
+              <div className="relative flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                </div>
+                <span className="text-xl font-black text-gray-800 tracking-wider uppercase">
+                  🏏 Our Foundation
+                </span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                  <div className="w-4 h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                </div>
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
-              Mission, Vision &
-              <span className="gradient-text block">Core Values</span>
+            
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
+              <span className="block text-gray-900 mb-6 drop-shadow-sm">
+                Mission, Vision &
+              </span>
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
+                Core Values
+              </span>
             </h2>
           </div>
 
           {/* Mission & Vision Grid */}
           <div className="grid lg:grid-cols-2 gap-12 mb-20">
-            <div className="glass-card rounded-3xl p-8 lg:p-12 shadow-premium interactive-card">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+            <div className="bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl p-8 lg:p-12 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
                 <Target className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-black text-gray-900 mb-6">Our Mission</h3>
@@ -379,14 +436,14 @@ const About = () => {
                 providing world-class training facilities and expert coaching that transforms 
                 passionate individuals into skilled cricketers who excel both on and off the field.
               </p>
-              <div className="flex items-center text-blue-600 font-semibold group cursor-pointer">
+              <div className="flex items-center text-amber-600 font-semibold group cursor-pointer">
                 <span>Learn More About Our Approach</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
             </div>
 
-            <div className="glass-card rounded-3xl p-8 lg:p-12 shadow-premium interactive-card">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
+            <div className="bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl p-8 lg:p-12 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card">
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-3xl font-black text-gray-900 mb-6">Our Vision</h3>
@@ -395,7 +452,7 @@ const About = () => {
                 producing world-class cricketers who represent the country at international 
                 levels while maintaining the highest standards of sportsmanship and integrity.
               </p>
-              <div className="flex items-center text-purple-600 font-semibold group cursor-pointer">
+              <div className="flex items-center text-orange-600 font-semibold group cursor-pointer">
                 <span>Explore Our Success Stories</span>
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
               </div>
@@ -409,7 +466,7 @@ const About = () => {
               return (
                 <div
                   key={index}
-                  className="text-center p-8 glass-card rounded-3xl shadow-premium hover:shadow-premium-hover transition-all duration-500 interactive-card magnetic-hover"
+                  className="text-center p-8 bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card magnetic-hover"
                 >
                   <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg`}>
                     <Icon className="w-8 h-8 text-white" />
@@ -423,22 +480,31 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section ref={timelineRef} className="py-20 lg:py-24 relative">
-        <ParticleSystem count={12} color="#10b981" />
+      {/* Timeline - Consistent styling */}
+      <section ref={timelineRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Consistent Header Style */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 glass-card rounded-full text-blue-700 font-semibold mb-8 shadow-lg interactive-card">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-              <span>Our Legacy</span>
-              <div className="w-2 h-2 bg-blue-500 rounded-full ml-3 animate-pulse"></div>
+            <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
+              <Crown className="w-5 h-5 mr-2 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <span className="text-sm tracking-wide font-bold">OUR LEGACY</span>
+              <div className="w-2 h-2 bg-amber-500 rounded-full ml-3 animate-pulse"></div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Journey of
-              <span className="gradient-text block">Excellence</span>
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
+                Excellence
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+            
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
               From humble beginnings to becoming West Bengal's premier cricket academy - 
               here's our story of growth, achievements, and unwavering commitment.
             </p>
@@ -446,7 +512,7 @@ const About = () => {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 lg:left-1/2 transform lg:-translate-x-0.5 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-red-500 opacity-30"></div>
+            <div className="absolute left-8 lg:left-1/2 transform lg:-translate-x-0.5 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 via-orange-500 to-red-500 opacity-30"></div>
             
             <div className="space-y-12">
               {timeline.map((item, index) => {
@@ -459,17 +525,17 @@ const About = () => {
                     className={`relative flex items-center ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
                   >
                     {/* Timeline marker */}
-                    <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-blue-500 rounded-full z-10 shadow-lg"></div>
+                    <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 shadow-lg"></div>
                     
                     {/* Content */}
                     <div className={`flex-1 ${isEven ? 'lg:pr-16 pl-20 lg:pl-0' : 'lg:pl-16 pl-20 lg:pr-0'}`}>
-                      <div className="glass-card rounded-3xl p-8 shadow-premium hover:shadow-premium-hover transition-all duration-500 interactive-card">
+                      <div className="bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card">
                         <div className="flex items-center mb-6">
                           <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mr-6 shadow-lg`}>
                             <Icon className="w-8 h-8 text-white" />
                           </div>
                           <div>
-                            <div className="text-3xl font-black text-blue-600 mb-1">{item.year}</div>
+                            <div className="text-3xl font-black text-amber-600 mb-1">{item.year}</div>
                             <div className="text-xl font-bold text-gray-900">{item.title}</div>
                           </div>
                         </div>
@@ -484,22 +550,56 @@ const About = () => {
         </div>
       </section>
 
-      {/* Coaches */}
-      <section ref={coachesRef} className="py-20 lg:py-24 relative">
+      {/* Coaches - Consistent styling */}
+      <section ref={coachesRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(217,119,6,0.03)_0%,transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(5,150,105,0.02)_0%,transparent_50%)]"></div>
+          </div>
+          <div className="absolute inset-0 opacity-[0.015]">
+            <div className="h-full w-full bg-[linear-gradient(45deg,#D97706_1px,transparent_1px),linear-gradient(-45deg,#059669_1px,transparent_1px)] bg-[size:6rem_6rem]"></div>
+          </div>
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Consistent Header Style */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 glass-card rounded-full text-blue-700 font-semibold mb-8 shadow-lg interactive-card">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-              <span>Expert Team</span>
-              <div className="w-2 h-2 bg-blue-500 rounded-full ml-3 animate-pulse"></div>
+            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
+              <div className="relative flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                </div>
+                <span className="text-xl font-black text-gray-800 tracking-wider uppercase">
+                  🏏 Expert Team
+                </span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                  <div className="w-4 h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                </div>
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
-              Meet Our
-              <span className="gradient-text block">World-Class Coaches</span>
+            
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
+              <span className="block text-gray-900 mb-6 drop-shadow-sm">
+                Meet Our
+              </span>
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
+                World-Class
+              </span>
+              <span className="block text-gray-800 text-5xl md:text-6xl lg:text-7xl">
+                Coaches
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              Learn from the best! Our team of experienced coaches brings years of professional 
-              cricket experience and proven training methodologies to help you reach your potential.
+            
+            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-20">
+              Learn from the best! Our team of 
+              <span className="text-amber-600 font-black"> experienced coaches</span> brings years of 
+              <span className="text-green-600 font-black"> professional cricket experience</span> and 
+              <span className="text-red-600 font-black"> proven training methodologies</span> to help you reach your potential.
             </p>
           </div>
 
@@ -507,13 +607,13 @@ const About = () => {
             {coaches.map((coach, index) => (
               <div
                 key={index}
-                className="glass-card rounded-3xl p-8 shadow-premium hover:shadow-premium-hover transition-all duration-500 interactive-card magnetic-hover text-center"
+                className="bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card magnetic-hover text-center"
               >
                 <div className={`w-24 h-24 bg-gradient-to-br ${coach.color} rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold shadow-lg`}>
                   {coach.initials}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{coach.name}</h3>
-                <p className="text-blue-600 font-semibold text-lg mb-1">{coach.role}</p>
+                <p className="text-amber-600 font-semibold text-lg mb-1">{coach.role}</p>
                 <p className="text-gray-600 mb-4">{coach.experience} • {coach.specialty}</p>
                 <p className="text-gray-700 leading-relaxed mb-6">{coach.achievements}</p>
                 
@@ -528,103 +628,94 @@ const About = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section ref={testimonialsRef} className="py-20 lg:py-24 relative">
-        <ParticleSystem count={10} color="#8b5cf6" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 glass-card rounded-full text-blue-700 font-semibold mb-8 shadow-lg interactive-card">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></div>
-              <span>Success Stories</span>
-              <div className="w-2 h-2 bg-blue-500 rounded-full ml-3 animate-pulse"></div>
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
-              What Our
-              <span className="gradient-text block">Champions Say</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
-              Don't just take our word for it. Hear from our students, parents, and success stories 
-              about their transformative experience at Doars Cricket Academy.
-            </p>
-          </div>
+      {/* Section Separator */}
+      <SectionSeparator variant="wave" />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="glass-card rounded-3xl p-8 shadow-premium hover:shadow-premium-hover transition-all duration-500 interactive-card magnetic-hover relative"
-              >
-                <Quote className="w-8 h-8 text-blue-500 mb-6" />
-                <p className="text-gray-700 leading-relaxed mb-8 italic text-lg">
-                  "{testimonial.quote}"
-                </p>
-                
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-4">
-                    {testimonial.initials}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-blue-600 font-medium">{testimonial.role}</p>
-                  </div>
-                </div>
-                
-                <div className="flex justify-center space-x-1">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      {/* Champion Success Stories Component */}
+      <div className="champion-success-stories-section">
+        <ChampionSuccessStories />
+      </div>
+
+      {/* Section Separator */}
+      <SectionSeparator variant="wave" />
+
+      {/* CTA Section - Consistent styling */}
+      <section ref={ctaRef} className="py-20 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+        {/* Consistent Background Pattern */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
+          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
-      </section>
-
-      {/* CTA Section */}
-      <section ref={ctaRef} className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/90 via-blue-700/90 to-purple-800/90"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8">
-              Ready to Join Our
-              <span className="block gradient-text-white">Cricket Family?</span>
+          <div className="max-w-6xl mx-auto">
+            {/* Consistent Header Style */}
+            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
+              <div className="relative flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg"></div>
+                  <div className="w-2 h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                </div>
+                <span className="text-xl font-black text-gray-800 tracking-wider uppercase">
+                  🏏 Join Our Family
+                </span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                  <div className="w-4 h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                </div>
+              </div>
+            </div>
+            
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
+              <span className="block text-gray-900 mb-6 drop-shadow-sm">
+                Ready to Join Our
+              </span>
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
+                Cricket Family?
+              </span>
             </h2>
-            <p className="text-xl md:text-2xl text-blue-100 mb-12 leading-relaxed">
-              Experience the difference at Doars Cricket Academy. Book your free trial session 
-              and discover why we're West Bengal's premier cricket training destination.
+            
+            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-20">
+              Experience the difference at 
+              <span className="text-amber-600 font-black"> Doars Cricket Academy.</span> Book your 
+              <span className="text-green-600 font-black"> free trial session</span> and discover why we're 
+              <span className="text-red-600 font-black"> West Bengal's premier</span> cricket training destination.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-              <button className="cricket-button interactive-card magnetic-hover inline-flex items-center px-8 py-4 text-white font-bold rounded-xl shadow-premium group glow-on-hover">
-                <Trophy className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
-                Book Free Trial
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+            {/* Consistent Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
+              <button className="group relative inline-flex items-center px-16 py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black text-2xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-110 transform overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Trophy className="w-8 h-8 mr-5 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-500 relative z-10" />
+                <span className="relative z-10">Book Free Trial</span>
               </button>
-              <button className="interactive-card magnetic-hover inline-flex items-center px-8 py-4 border-2 border-white text-white font-bold rounded-xl hover:bg-white hover:text-blue-600 transition-all duration-300 group shadow-premium-hover">
-                <Phone className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                Call Us Now
+              
+              <button className="group relative inline-flex items-center px-16 py-6 bg-white/95 backdrop-blur-sm border-4 border-gray-300 text-gray-800 font-black text-2xl rounded-3xl hover:bg-gray-50 transition-all duration-700 shadow-2xl hover:shadow-3xl transform hover:scale-110 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Phone className="w-8 h-8 mr-5 group-hover:scale-125 transition-transform duration-500 relative z-10" />
+                <span className="relative z-10">Contact Us</span>
               </button>
             </div>
-
-            {/* Contact Info */}
-            <div className="grid md:grid-cols-3 gap-8 text-left">
-              <div className="glass-card rounded-2xl p-6 text-center">
-                <MapPin className="w-8 h-8 text-blue-300 mx-auto mb-3" />
-                <h3 className="font-bold text-white mb-2">Visit Us</h3>
-                <p className="text-blue-100 text-sm">Doars Cricket Academy<br />Alipurduar, West Bengal</p>
-              </div>
-              <div className="glass-card rounded-2xl p-6 text-center">
-                <Phone className="w-8 h-8 text-blue-300 mx-auto mb-3" />
-                <h3 className="font-bold text-white mb-2">Call Us</h3>
-                <p className="text-blue-100 text-sm">+91 98765 43210<br />Daily: 5:00 AM - 8:00 PM</p>
-              </div>
-              <div className="glass-card rounded-2xl p-6 text-center">
-                <Mail className="w-8 h-8 text-blue-300 mx-auto mb-3" />
-                <h3 className="font-bold text-white mb-2">Email Us</h3>
-                <p className="text-blue-100 text-sm">info@doarscricket.com<br />Quick Response Guaranteed</p>
-              </div>
+            
+            {/* Consistent Contact Info */}
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {[
+                { icon: Phone, label: 'Call Us', value: '+91 98765 43210', color: 'from-green-500 to-emerald-600' },
+                { icon: Mail, label: 'Email Us', value: 'info@doarscricket.com', color: 'from-amber-500 to-orange-600' },
+                { icon: MapPin, label: 'Visit Us', value: 'Siliguri, West Bengal', color: 'from-red-500 to-pink-600' }
+              ].map((contact, index) => (
+                <div
+                  key={index}
+                  className="group flex flex-col items-center p-8 bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100/50 hover:border-gray-200/80 hover:scale-105"
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-br ${contact.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
+                    <contact.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <span className="text-gray-800 font-black text-lg mb-2">{contact.label}</span>
+                  <span className="text-gray-600 font-semibold">{contact.value}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

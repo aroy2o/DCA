@@ -14,8 +14,42 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Smooth scroll behavior - Enhanced for consistency */
 * {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
+}
+
+/* Enhanced scroll timeline */
+@supports (scroll-timeline: works) {
+  .cricket-scroll-progress {
+    animation: scroll-progress linear;
+    animation-timeline: scroll();
+  }
+}
+
+/* Prevent scroll jank and improve performance */
+.cricket-scroll-progress,
+.cricket-scrollbar-container,
+.cricket-ball,
+.section-tooltip {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Consistent spacing and positioning */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Prevent layout shift during scroll */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
 }
 
 body {
@@ -63,6 +97,40 @@ body {
   background-color: #ffffff;
 }
 
+/* Enhanced animations for programs page */
+@keyframes expandLine {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes floatingOrb {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+.floating-orb {
+  animation: floatingOrb 6s ease-in-out infinite;
+}
+
+/* Modern parallax effects */
+.parallax-slow {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.parallax-fast {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
 /* Navigation blur effect */
 .nav-blur {
   backdrop-filter: blur(20px);
@@ -71,15 +139,931 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Scroll progress indicator */
-.scroll-indicator {
+/* ===== UNIFIED CRICKET SCROLLBAR SYSTEM ===== */
+
+/* Cricket-themed Scroll Progress Indicator - Enhanced & Unified */
+.cricket-scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #D97706, #059669);
+  right: 0;
+  height: 8px;
   z-index: 9999;
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, 
+    rgba(34, 197, 94, 0.05) 0%,
+    rgba(34, 197, 94, 0.12) 50%,
+    rgba(34, 197, 94, 0.05) 100%
+  );
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(34, 197, 94, 0.2);
+  box-shadow: 
+    0 4px 25px rgba(34, 197, 94, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.scroll-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(34, 197, 94, 0.08) 0%,
+    rgba(34, 197, 94, 0.15) 30%,
+    rgba(34, 197, 94, 0.25) 50%,
+    rgba(34, 197, 94, 0.15) 70%,
+    rgba(34, 197, 94, 0.08) 100%
+  );
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+  position: relative;
+}
+
+.scroll-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(34, 197, 94, 0.1) 25%,
+    rgba(34, 197, 94, 0.2) 50%,
+    rgba(34, 197, 94, 0.1) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: grassWave 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.pitch-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.crease-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, 
+    rgba(34, 197, 94, 0.2), 
+    rgba(34, 197, 94, 0.4), 
+    rgba(34, 197, 94, 0.2)
+  );
+  opacity: 0.6;
+}
+
+.scroll-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #22c55e 0%, 
+    #16a34a 20%, 
+    #15803d 40%, 
+    #166534 60%, 
+    #14532d 80%,
+    #0f1915 100%
+  );
+  box-shadow: 
+    0 3px 12px rgba(34, 197, 94, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 6px 6px 0;
+  position: relative;
+}
+
+.scroll-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.cricket-ball {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 28% 28%, 
+    #ffffff 0%,
+    #dc2626 15%,
+    #b91c1c 45%,
+    #991b1b 70%,
+    #7f1d1d 90%,
+    #450a0a 100%
+  );
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 
+    0 4px 12px rgba(220, 38, 38, 0.5),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
+  z-index: 10;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: visible;
+  position: relative;
+}
+
+.cricket-ball::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.6) 0%, 
+    rgba(255, 255, 255, 0.2) 30%, 
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.cricket-ball:hover {
+  transform: translateY(-50%) scale(1.25);
+  box-shadow: 
+    0 8px 20px rgba(220, 38, 38, 0.7),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+    0 0 25px rgba(220, 38, 38, 0.5),
+    0 0 40px rgba(220, 38, 38, 0.3);
+  animation: cricketPulse 1.5s ease-in-out infinite;
+}
+
+.ball-highlight {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.4) 60%, 
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ball-seam {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  width: 1.5px;
+  height: 14px;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  transform: translateX(-50%);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ball-seam::before,
+.ball-seam::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 1.5px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    transparent 100%
+  );
+  border-radius: 1px;
+  left: -3.25px;
+}
+
+.ball-seam::before {
+  top: 2px;
+}
+
+.ball-seam::after {
+  bottom: 2px;
+}
+
+.wicket {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: flex-end;
+  z-index: 5;
+}
+
+.stump {
+  width: 1.5px;
+  height: 8px;
+  background: #fbbf24;
+  margin: 0 0.5px;
+  border-radius: 0.5px 0.5px 0 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.bail {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 1px;
+  background: #f59e0b;
+  border-radius: 0.5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.progress-percentage {
+  position: fixed;
+  top: 12px;
+  right: 24px;
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.95) 0%,
+    rgba(21, 128, 61, 0.95) 100%
+  );
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 9999;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 25px rgba(34, 197, 94, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  min-width: 60px;
+  text-align: center;
+  position: relative;
+}
+
+.progress-percentage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.score-value {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.score-unit {
+  font-size: 8px;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.score-indicator {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 4px;
+  height: 4px;
+  background: #fbbf24;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  position: fixed;
+  top: 50%;
+  right: 8px;
+  width: 8px;
+  height: 200px;
+  transform: translateY(-50%);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-scrollbar:hover,
+body:hover .custom-scrollbar {
+  opacity: 1;
+}
+
+.scrollbar-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollbar-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(180deg, 
+    #22c55e 0%, 
+    #16a34a 50%, 
+    #15803d 100%
+  );
+  border-radius: 4px;
+  box-shadow: 
+    0 2px 8px rgba(34, 197, 94, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    #16a34a 0%, 
+    #15803d 50%, 
+    #166534 100%
+  );
+  box-shadow: 
+    0 4px 12px rgba(34, 197, 94, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Hide default scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(34, 197, 94, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    #22c55e 0%, 
+    #16a34a 50%, 
+    #15803d 100%
+  );
+  border-radius: 4px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    #16a34a 0%, 
+    #15803d 50%, 
+    #166534 100%
+  );
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(34, 197, 94, 0.05);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #22c55e rgba(34, 197, 94, 0.1);
+}
+
+/* Enhanced Cricket-themed Scrollbar Component - Unified & Consistent */
+.cricket-scrollbar-container {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 9998;
+  pointer-events: auto;
+  padding: 16px 10px;
+  background: linear-gradient(180deg, 
+    rgba(34, 197, 94, 0.04) 0%,
+    rgba(34, 197, 94, 0.10) 30%,
+    rgba(34, 197, 94, 0.15) 50%,
+    rgba(34, 197, 94, 0.10) 70%,
+    rgba(34, 197, 94, 0.04) 100%
+  );
+  border: 2px solid rgba(34, 197, 94, 0.2);
+  border-radius: 18px;
+  backdrop-filter: blur(25px);
+  box-shadow: 
+    0 10px 40px rgba(34, 197, 94, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cricket-scrollbar-container:hover {
+  background: linear-gradient(180deg, 
+    rgba(34, 197, 94, 0.08) 0%,
+    rgba(34, 197, 94, 0.18) 30%,
+    rgba(34, 197, 94, 0.25) 50%,
+    rgba(34, 197, 94, 0.18) 70%,
+    rgba(34, 197, 94, 0.08) 100%
+  );
+  border-color: rgba(34, 197, 94, 0.35);
+  box-shadow: 
+    0 15px 50px rgba(34, 197, 94, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform: translateY(-50%) scale(1.02);
+}
+
+.cricket-scrollbar-track {
+  position: relative;
+  width: 10px;
+  height: 320px;
+  background: linear-gradient(180deg, 
+    rgba(34, 197, 94, 0.12) 0%,
+    rgba(34, 197, 94, 0.25) 30%,
+    rgba(34, 197, 94, 0.35) 50%,
+    rgba(34, 197, 94, 0.25) 70%,
+    rgba(34, 197, 94, 0.12) 100%
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 5px 25px rgba(34, 197, 94, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  overflow: visible;
+}
+
+.section-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.section-marker {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: rgba(34, 197, 94, 0.6);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-marker:hover {
+  background: #22c55e;
+  transform: translateX(-50%) scale(1.5);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+.cricket-scrollbar-thumb {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  cursor: grab;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cricket-scrollbar-thumb:active {
+  cursor: grabbing;
+  transform: translateX(-50%) scale(1.1);
+}
+
+.cricket-scrollbar-thumb:hover {
+  transform: translateX(-50%) scale(1.15);
+}
+
+.ball-texture {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 28% 28%, 
+    #ffffff 0%,
+    #dc2626 12%,
+    #b91c1c 40%,
+    #991b1b 65%,
+    #7f1d1d 85%,
+    #450a0a 100%
+  );
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 15px rgba(220, 38, 38, 0.5),
+    inset -3px -3px 8px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ball-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.7) 0%, 
+    rgba(255, 255, 255, 0.3) 25%, 
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.cricket-scrollbar-thumb:hover .ball-texture {
+  box-shadow: 
+    0 6px 20px rgba(220, 38, 38, 0.7),
+    inset -3px -3px 8px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 25px rgba(220, 38, 38, 0.4);
+}
+
+.seam-line {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  width: 1px;
+  height: 20px;
+  background: #ffffff;
+  transform: translateX(-50%);
+  border-radius: 1px;
+  opacity: 0.9;
+}
+
+.seam-curve {
+  position: absolute;
+  width: 8px;
+  height: 1px;
+  background: #ffffff;
+  border-radius: 1px;
+  opacity: 0.8;
+}
+
+.seam-curve-1 {
+  top: 6px;
+  left: 8px;
+  transform: rotate(45deg);
+}
+
+.seam-curve-2 {
+  bottom: 6px;
+  left: 8px;
+  transform: rotate(-45deg);
+}
+
+.progress-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.scroll-percentage {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(34, 197, 94, 0.9);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+  white-space: nowrap;
+}
+
+/* ===== ENHANCED TOOLTIP SYSTEM ===== */
+
+.section-tooltip {
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(34, 197, 94, 0.25);
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(34, 197, 94, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  min-width: 140px;
+  position: relative;
+}
+
+.tooltip-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.05) 0%,
+    transparent 50%,
+    rgba(34, 197, 94, 0.08) 100%
+  );
+  pointer-events: none;
+}
+
+.section-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.cricket-field-mini {
+  position: relative;
+  width: 90px;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #dcfce7 0%, 
+    #bbf7d0 15%, 
+    #86efac 30%, 
+    #22c55e 50%, 
+    #86efac 70%, 
+    #bbf7d0 85%, 
+    #dcfce7 100%
+  );
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 1px 3px rgba(34, 197, 94, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  position: relative;
+}
+
+.mini-pitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0.3) 32%
+  );
+}
+
+.mini-ball {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #dc2626, #991b1b);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: left 0.3s ease;
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.4);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid rgba(255, 255, 255, 0.95);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+/* Scroll to Top Cricket Button */
+.scroll-to-top-cricket {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, 
+    #22c55e 0%,
+    #16a34a 50%,
+    #15803d 100%
+  );
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 9997;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 6px 20px rgba(34, 197, 94, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.scroll-to-top-cricket:hover {
+  background: linear-gradient(135deg, 
+    #16a34a 0%,
+    #15803d 50%,
+    #166534 100%
+  );
+  box-shadow: 
+    0 8px 25px rgba(34, 197, 94, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced cricket bat icon for scroll button */
+.cricket-bat {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 4px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-to-top-cricket:hover .cricket-bat {
+  transform: rotate(360deg) scale(1.15);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.bat-blade {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 18px;
+  background: linear-gradient(180deg, 
+    #fbbf24 0%, 
+    #f59e0b 30%, 
+    #d97706 70%,
+    #b45309 100%
+  );
+  border-radius: 3px 3px 0 0;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bat-handle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 12px;
+  background: linear-gradient(180deg, 
+    #92400e 0%, 
+    #78350f 50%,
+    #451a03 100%
+  );
+  border-radius: 0 0 2px 2px;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.scroll-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  margin-top: 2px;
+}
+
+/* Sound wave effect for progress */
+@keyframes soundWave {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: translateY(-50%) scaleY(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(-50%) scaleY(1.8); 
+  }
+}
+
+/* ===== MOBILE RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+  .cricket-scroll-progress {
+    height: 6px;
+  }
+  
+  .cricket-scrollbar-container {
+    right: 12px;
+    padding: 12px 8px;
+  }
+  
+  .cricket-scrollbar-track {
+    height: 240px;
+    width: 8px;
+  }
+  
+  .cricket-scrollbar-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .section-tooltip {
+    display: none;
+  }
+  
+  .scroll-to-top-cricket {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .progress-percentage {
+    top: 8px;
+    right: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .cricket-ball {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .ball-seam {
+    height: 12px;
+    width: 1px;
+  }
+  
+  .ball-highlight {
+    width: 4px;
+    height: 4px;
+    top: 2px;
+    left: 3px;
+  }
+}
+
+/* Performance optimizations */
+.cricket-scrollbar-container * {
+  will-change: transform;
+}
+
+/* Smooth scroll behavior */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Custom animations */
@@ -129,7 +1113,7 @@ body {
 .animate-pulse { animation: pulse 2s infinite; }
 .animate-spin { animation: spin 1s linear infinite; }
 
-/* Interactive effects */
+/* Enhanced interactive effects */
 .hover-lift {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -145,6 +1129,80 @@ body {
 
 .magnetic-hover:hover {
   transform: scale(1.05);
+}
+
+/* Warm color theme variations */
+.gradient-text-warm {
+  background: linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #DC2626 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-warm-gradient {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FED7AA 50%, #FECACA 100%);
+}
+
+.border-warm {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.shadow-warm {
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.1);
+}
+
+.shadow-warm-hover {
+  box-shadow: 0 12px 40px rgba(234, 88, 12, 0.2);
+}
+
+/* Enhanced glass effects with warm tones */
+.glass-warm {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.1);
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.1);
+}
+
+/* Consistent animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Success feedback */
+.success-flash {
+  animation: successFlash 0.6s ease-out;
+}
+
+@keyframes successFlash {
+  0% { background-color: rgba(34, 197, 94, 0); }
+  50% { background-color: rgba(34, 197, 94, 0.1); }
+  100% { background-color: rgba(34, 197, 94, 0); }
 }
 
 /* Clean backgrounds */
@@ -199,4 +1257,1056 @@ body {
 @media print {
   .no-print { display: none !important; }
   * { background: white !important; color: black !important; }
+}
+
+/* Enhanced Cricket Scroll Animations */
+@keyframes cricketBallRoll {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+@keyframes trailFade {
+  0% { 
+    opacity: 0.8; 
+    transform: scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.3) translateY(-20px); 
+  }
+}
+
+@keyframes enhancedTrailFade {
+  0% { 
+    opacity: 0.9; 
+    transform: scale(1) rotate(0deg); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.2) rotate(180deg); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.2) rotate(360deg) translateY(-30px); 
+  }
+}
+
+@keyframes soundWaveExpand {
+  0% { 
+    transform: scale(0); 
+    opacity: 0.8; 
+  }
+  50% { 
+    opacity: 0.6; 
+  }
+  100% { 
+    transform: scale(3); 
+    opacity: 0; 
+  }
+}
+
+@keyframes celebrationBurst {
+  0% { 
+    transform: translate(0, 0) scale(1); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translate(
+      calc(cos(var(--angle)) * var(--distance)), 
+      calc(sin(var(--angle)) * var(--distance))
+    ) scale(0.3); 
+    opacity: 0; 
+  }
+}
+
+@keyframes jumpEffect {
+  0% { 
+    transform: translate(-50%, -50%) scale(0.8); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: translate(-50%, -50%) scale(1.1); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(0.9); 
+    opacity: 0; 
+  }
+}
+
+.ball-trail-effect {
+  animation: trailFade 1s ease-out forwards;
+}
+
+.ball-trail-effect-enhanced {
+  animation: enhancedTrailFade 1.2s ease-out forwards;
+}
+
+.cricket-sound-wave {
+  animation: soundWaveExpand 0.6s ease-out forwards;
+}
+
+.celebration-firework {
+  animation: celebrationBurst 1.5s ease-out forwards;
+}
+
+.section-jump-effect {
+  animation: jumpEffect 1s ease-out forwards;
+}
+
+.section-jump-effect .jump-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.section-jump-effect .jump-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 30px rgba(34, 197, 94, 0.4); 
+  }
+}
+
+@keyframes wicketShine {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.cricket-ball.rolling {
+  animation: cricketBallRoll 2s linear infinite;
+}
+
+/* Enhanced interactive cricket ball */
+.cricket-ball:hover {
+  animation: cricketBallRoll 1s linear infinite, pulseGlow 2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.cricket-ball.fast-rolling {
+  animation: cricketBallRoll 0.5s linear infinite, pulseGlow 1s ease-in-out infinite;
+}
+
+.cricket-ball.reverse-rolling {
+  animation: cricketBallRoll 1s linear infinite reverse;
+}
+
+/* Speed lines for fast movement */
+.speed-lines {
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.speed-line {
+  position: absolute;
+  width: 12px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  opacity: 0.8;
+  animation: speedLineMove 0.3s linear infinite;
+}
+
+.speed-line:nth-child(1) { top: -2px; animation-delay: 0s; }
+.speed-line:nth-child(2) { top: 0px; animation-delay: 0.1s; }
+.speed-line:nth-child(3) { top: 2px; animation-delay: 0.2s; }
+
+@keyframes speedLineMove {
+  0% { transform: translateX(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(-20px); opacity: 0; }
+}
+
+/* Enhanced tooltips and sections */
+.section-tooltip {
+  position: absolute;
+  left: -200px;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(34, 197, 94, 0.15) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(34, 197, 94, 0.2);
+  z-index: 10000;
+  min-width: 180px;
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-name {
+  font-weight: 600;
+  color: #22c55e;
+  font-size: 14px;
+}
+
+.cricket-field-mini {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(90deg, 
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(34, 197, 94, 0.2) 50%,
+    rgba(34, 197, 94, 0.1) 100%
+  );
+  border-radius: 15px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  overflow: hidden;
+}
+
+.mini-pitch {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(34, 197, 94, 0.6);
+  transform: translateY(-50%);
+}
+
+.mini-ball {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #dc2626, #991b1b);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: left 0.3s ease;
+}
+
+.mini-wicket {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 15px;
+  background: #fbbf24;
+  transform: translateY(-50%);
+}
+
+.tooltip-stats {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.scroll-percentage {
+  font-weight: 700;
+  color: #22c55e;
+  font-size: 16px;
+}
+
+.scroll-speed {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: black;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.scroll-direction {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.section-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid rgba(0, 0, 0, 0.9);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+/* Progress percentage display */
+.progress-percentage {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: linear-gradient(135deg, 
+    rgba(34, 197, 94, 0.9) 0%,
+    rgba(16, 163, 74, 0.9) 100%
+  );
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 
+    0 8px 32px rgba(34, 197, 94, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 9990;
+}
+
+.score-value {
+  font-size: 18px;
+  margin-right: 2px;
+}
+
+.score-unit {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.score-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 6px;
+  background: #fbbf24;
+  border-radius: 50%;
+  animation: scoreIndicatorPulse 2s ease-in-out infinite;
+}
+
+@keyframes scoreIndicatorPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Celebration effects */
+.celebration-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, 
+    rgba(255, 215, 0, 0.9) 0%,
+    rgba(255, 140, 0, 0.9) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  padding: 20px 30px;
+  color: black;
+  text-align: center;
+  box-shadow: 
+    0 20px 60px rgba(255, 215, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  z-index: 10001;
+}
+
+.celebration-text {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.celebration-subtext {
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Speed badge */
+.speed-badge {
+  position: absolute;
+  top: -20px;
+  right: -30px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-size: 8px;
+  font-weight: bold;
+  padding: 2px 4px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+  z-index: 10;
+}
+
+/* Keyboard shortcuts indicator */
+.keyboard-shortcuts {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
+  padding: 12px;
+  color: white;
+  font-size: 11px;
+  z-index: 10000;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.shortcut-item {
+  margin-bottom: 4px;
+  padding: 4px 8px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+}
+
+.shortcut-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Click counter enhanced */
+.click-counter {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+  z-index: 10;
+}
+
+/* Celebration overlay */
+.celebration-overlay {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ffd700, #ff6347);
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 10001;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+  backdrop-filter: blur(15px);
+}
+
+.celebration-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.celebration-subtext {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Wicket animations */
+.wicket:hover .stump {
+  animation: wicketShine 1s ease-in-out infinite;
+}
+
+/* Wicket shine animation */
+.wicket:hover .stump {
+  animation: wicketShine 1s ease-in-out infinite;
+}
+
+/* Enhanced ball texture with 3D effect */
+.ball-texture {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 25% 25%, 
+    #ef4444 0%,
+    #dc2626 30%,
+    #b91c1c 60%,
+    #991b1b 80%,
+    #7f1d1d 100%
+  );
+  border-radius: 50%;
+  box-shadow: 
+    0 4px 12px rgba(220, 38, 38, 0.4),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
+}
+
+.ball-texture:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+  box-shadow: 
+    0 2px 8px rgba(220, 38, 38, 0.6),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.5),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.ball-texture:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 6px 20px rgba(220, 38, 38, 0.6),
+    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+    0 0 15px rgba(220, 38, 38, 0.3);
+}
+
+/* Enhanced section markers */
+.section-marker {
+  position: absolute;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-marker:hover {
+  transform: translateX(-50%) scale(2);
+  box-shadow: 
+    0 4px 16px rgba(34, 197, 94, 0.5),
+    0 0 20px rgba(34, 197, 94, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+}
+
+.section-marker:active {
+  transform: translateX(-50%) scale(1.8);
+}
+
+.marker-icon {
+  font-size: 8px;
+  position: absolute;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced tooltip with cricket theme */
+.section-tooltip {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(248, 250, 252, 0.95) 100%
+  );
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(34, 197, 94, 0.2);
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(34, 197, 94, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  min-width: 140px;
+  max-width: 180px;
+  transform: translateY(-50%);
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.tooltip-stats {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.scroll-speed {
+  font-size: 10px;
+  font-weight: 600;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.scroll-direction {
+  font-size: 10px;
+  font-weight: 600;
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 2px 6px;
+  border-radius: 6px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.section-description {
+  font-size: 11px;
+  color: #6b7280;
+  text-align: center;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.mini-wicket {
+  position: absolute;
+  top: 1px;
+  width: 2px;
+  height: 4px;
+  background: #fbbf24;
+  border-radius: 1px 1px 0 0;
+  transform: translateX(-50%);
+}
+
+.section-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #166534;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.cricket-field-mini {
+  position: relative;
+  width: 100px;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #dcfce7 0%, 
+    #bbf7d0 20%, 
+    #86efac 50%, 
+    #bbf7d0 80%, 
+    #dcfce7 100%
+  );
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.mini-pitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.4) 32%
+  );
+}
+
+.mini-ball {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #dc2626, #991b1b);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 1px 3px rgba(220, 38, 38, 0.4),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.3),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.scroll-percentage {
+  font-size: 12px;
+  font-weight: 700;
+  color: #16a34a;
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.1);
+}
+
+.tooltip-arrow {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid rgba(255, 255, 255, 0.98);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  filter: drop-shadow(2px 0 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Enhanced scroll-to-top button */
+.scroll-to-top-cricket {
+  background: linear-gradient(135deg, 
+    #22c55e 0%,
+    #16a34a 50%,
+    #15803d 100%
+  );
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-to-top-cricket::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.scroll-to-top-cricket:hover::before {
+  left: 100%;
+}
+
+.scroll-to-top-cricket:hover {
+  background: linear-gradient(135deg, 
+    #16a34a 0%,
+    #15803d 50%,
+    #166534 100%
+  );
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Progress ring around button */
+.button-progress-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Sound toggle button */
+.sound-toggle-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 9996;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  transition: all 0.3s ease;
+}
+
+.sound-toggle-btn:hover {
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Keyboard shortcuts indicator */
+.keyboard-shortcuts {
+  position: fixed;
+  bottom: 150px;
+  right: 24px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(31, 41, 55, 0.9));
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  z-index: 10000;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.shortcut-item {
+  margin-bottom: 4px;
+  opacity: 0.9;
+}
+
+.shortcut-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Enhanced cricket bat icon */
+.cricket-bat {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top-cricket:hover .cricket-bat {
+  transform: rotate(360deg) scale(1.1);
+}
+
+.bat-blade {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 16px;
+  background: linear-gradient(180deg, 
+    #fbbf24 0%, 
+    #f59e0b 50%, 
+    #d97706 100%
+  );
+  border-radius: 3px 3px 0 0;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bat-handle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  height: 10px;
+  background: linear-gradient(180deg, 
+    #92400e 0%, 
+    #78350f 100%
+  );
+  border-radius: 0 0 2px 2px;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== UNIFIED CRICKET ANIMATION KEYFRAMES ===== */
+
+/* Grass wave animation for the track */
+@keyframes grassWave {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Enhanced shimmer effect */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Cricket ball pulse animation */
+@keyframes cricketPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 20px rgba(220, 38, 38, 0.7),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+      0 0 25px rgba(220, 38, 38, 0.5);
+  }
+  50% { 
+    box-shadow: 
+      0 12px 30px rgba(220, 38, 38, 0.9),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(220, 38, 38, 0.7),
+      0 0 60px rgba(220, 38, 38, 0.4);
+  }
+}
+
+/* Enhanced cricket ball roll */
+@keyframes cricketBallRoll {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Sound wave expand effect */
+@keyframes soundWaveExpand {
+  0% { 
+    opacity: 0.8; 
+    transform: scale(0.5); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(2); 
+  }
+}
+
+/* Enhanced trail fade */
+@keyframes enhancedTrailFade {
+  0% { 
+    opacity: 0.9; 
+    transform: scale(1) rotate(0deg); 
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.2) rotate(180deg); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.3) rotate(360deg) translateY(-30px); 
+  }
+}
+
+/* Celebration burst effect */
+@keyframes celebrationBurst {
+  0% { 
+    opacity: 1; 
+    transform: scale(1) translate(0, 0); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: scale(0.3) translate(
+      calc(cos(var(--angle)) * var(--distance)), 
+      calc(sin(var(--angle)) * var(--distance))
+    ); 
+  }
+}
+
+/* Wicket celebration animation */
+@keyframes wicketCelebration {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+
+.wicket:hover {
+  animation: wicketCelebration 0.5s ease-in-out;
+}
+
+.wicket:hover .stump {
+  background: #fbbf24;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+}
+
+/* Sound wave effect for progress */
+@keyframes soundWave {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.5); }
+}
+
+.progress-percentage::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  width: 2px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-50%);
+  animation: soundWave 1s ease-in-out infinite;
+}
+
+/* Smooth transitions for all cricket elements */
+.cricket-scroll-progress *,
+.cricket-scrollbar-container * {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Loading animation for initial render */
+@keyframes cricketEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cricket-scroll-progress,
+.cricket-scrollbar-container {
+  animation: cricketEntrance 0.8s ease-out;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .cricket-scrollbar-container {
+    right: 8px;
+    padding: 8px;
+  }
+  
+  .cricket-scrollbar-track {
+    height: 200px;
+    width: 6px;
+  }
+  
+  .cricket-scrollbar-thumb {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .section-tooltip {
+    display: none;
+  }
+  
+  .scroll-to-top-cricket {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .cricket-bat {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .bat-blade {
+    width: 6px;
+    height: 12px;
+  }
+  
+  .bat-handle {
+    width: 3px;
+    height: 8px;
+  }
 }

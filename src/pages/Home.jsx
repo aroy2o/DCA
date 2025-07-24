@@ -802,37 +802,37 @@ const Home = () => {
         <Features features={features} />
       </div>
 
-      {/* Unified "Why Choose DCA" Section with consistent styling */}
-      <section ref={interactiveRef} className="why-choose-section py-24 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+      {/* Mobile-Optimized "Why Choose DCA" Section */}
+      <section ref={interactiveRef} className="why-choose-section py-16 sm:py-20 md:py-24 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
-          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+          <div className="absolute inset-0 opacity-[0.015] sm:opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem]"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          {/* Unified Header Style */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
-              <Crown className="w-5 h-5 mr-2 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
-              <span className="text-sm tracking-wide font-bold">WHY CHOOSE DCA</span>
-              <div className="w-2 h-2 bg-amber-500 rounded-full ml-3 animate-pulse"></div>
+          {/* Mobile-Optimized Header */}
+          <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="inline-flex items-center px-4 sm:px-5 md:px-6 py-2 sm:py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-xl sm:rounded-2xl text-gray-800 font-semibold mb-6 sm:mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
+              <Crown className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-amber-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <span className="text-xs sm:text-sm tracking-wide font-bold">WHY CHOOSE DCA</span>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-amber-500 rounded-full ml-2 sm:ml-3 animate-pulse"></div>
             </div>
             
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 mb-4 sm:mb-5 md:mb-6 leading-tight">
               Excellence Through
-              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-1 sm:mt-2">
                 Innovation
               </span>
             </h2>
             
-            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl sm:max-w-4xl mx-auto leading-relaxed font-medium px-4 sm:px-0">
               Experience next-generation cricket training with our cutting-edge methodologies and proven success rates.
             </p>
           </div>
 
-          {/* Unified Grid Layout with warm color scheme */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          {/* Mobile-Optimized Grid Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8 mb-12 sm:mb-14 md:mb-16">
             {[
               {
                 icon: BarChart3,
@@ -885,44 +885,44 @@ const Home = () => {
             ].map((feature, index) => (
               <div 
                 key={index}
-                className={`group bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-2xl p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 hover:scale-105 ${feature.hoverColor}`}
+                className={`group bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 hover:scale-105 ${feature.hoverColor}`}
               >
-                <div className={`w-16 h-16 bg-gradient-to-br ${feature.bgGradient} rounded-2xl mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
-                  <feature.icon className={`w-8 h-8 ${feature.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${feature.bgGradient} rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                  <feature.icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 ${feature.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-800 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 group-hover:text-gray-800 transition-colors duration-300">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                   {feature.description}
                 </p>
                 
                 {/* Unified Hover Glow Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.bgGradient} rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${feature.bgGradient} rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10`}></div>
               </div>
             ))}
           </div>
 
-          {/* Unified CTA Section */}
+          {/* Mobile-Optimized CTA Section */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-4 p-2 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl shadow-lg shadow-amber-500/10">
+            <div className="inline-flex flex-col sm:flex-row items-center gap-3 sm:gap-4 p-2 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-xl sm:rounded-2xl shadow-lg shadow-amber-500/10">
               <Link
                 to="/programs"
-                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden"
+                className="group relative inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden w-full sm:w-auto"
               >
-                <Trophy className="w-5 h-5 mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-black">START YOUR JOURNEY</span>
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+                <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-black text-sm sm:text-base">START YOUR JOURNEY</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
               
               <a
                 href="#contact"
-                className="group relative inline-flex items-center px-8 py-4 border-2 border-amber-300 text-amber-800 font-bold rounded-xl hover:bg-amber-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                className="group relative inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-amber-300 text-amber-800 font-bold rounded-lg sm:rounded-xl hover:bg-amber-50 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto"
               >
-                <Calendar className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-300" />
-                <span className="font-black">BOOK TRIAL</span>
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 group-hover:scale-110 transition-transform duration-300" />
+                <span className="font-black text-sm sm:text-base">BOOK TRIAL</span>
               </a>
             </div>
           </div>
@@ -932,79 +932,79 @@ const Home = () => {
       {/* Section Separator */}
       <SectionSeparator variant="wave" />
 
-      {/* Unified CTA Section with warm color scheme */}
-      <section ref={ctaRef} className="cta-section py-32 relative overflow-hidden bg-gradient-to-br from-orange-50/30 via-white to-red-50/20">
-        {/* Consistent Background Pattern */}
+      {/* Mobile-Optimized CTA Section */}
+      <section ref={ctaRef} className="cta-section py-20 sm:py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-orange-50/30 via-white to-red-50/20">
+        {/* Mobile-Optimized Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(234,88,12,0.02)_0%,transparent_50%)]"></div>
-          <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#EA580C_1px,transparent_1px),linear-gradient(to_bottom,#EA580C_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-          {/* Floating elements with consistent warm style */}
+          <div className="absolute inset-0 opacity-[0.015] sm:opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#EA580C_1px,transparent_1px),linear-gradient(to_bottom,#EA580C_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem]"></div>
+          {/* Mobile-optimized floating elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-amber-100 to-orange-200 rounded-full opacity-10"></div>
-            <div className="absolute bottom-20 right-20 w-40 h-40 bg-gradient-to-br from-orange-100 to-red-200 rounded-full opacity-10"></div>
-            <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-gradient-to-br from-red-100 to-rose-200 rounded-full opacity-10"></div>
-            <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full opacity-10"></div>
+            <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-br from-amber-100 to-orange-200 rounded-full opacity-5 sm:opacity-10"></div>
+            <div className="absolute bottom-10 sm:bottom-20 right-10 sm:right-20 w-24 sm:w-40 h-24 sm:h-40 bg-gradient-to-br from-orange-100 to-red-200 rounded-full opacity-5 sm:opacity-10"></div>
+            <div className="absolute top-1/2 left-1/4 w-16 sm:w-24 h-16 sm:h-24 bg-gradient-to-br from-red-100 to-rose-200 rounded-full opacity-5 sm:opacity-10"></div>
+            <div className="absolute top-1/3 right-1/3 w-12 sm:w-20 h-12 sm:h-20 bg-gradient-to-br from-rose-100 to-pink-200 rounded-full opacity-5 sm:opacity-10"></div>
           </div>
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-          <div className="max-w-5xl mx-auto">
-            {/* Unified Heading Section */}
-            <div className="mb-12">
-              <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transition-all duration-500 group">
-                <Rocket className="w-5 h-5 mr-2 text-orange-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
-                <span className="font-bold">Ready to Begin?</span>
-                <div className="w-2 h-2 bg-orange-500 rounded-full ml-2 animate-pulse"></div>
+          <div className="max-w-4xl sm:max-w-5xl mx-auto">
+            {/* Mobile-Optimized Heading Section */}
+            <div className="mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center px-4 sm:px-5 md:px-6 py-2 sm:py-3 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-xl sm:rounded-2xl text-gray-800 font-semibold mb-6 sm:mb-8 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transition-all duration-500 group">
+                <Rocket className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+                <span className="font-bold text-sm sm:text-base">Ready to Begin?</span>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-orange-500 rounded-full ml-2 animate-pulse"></div>
               </div>
               
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-8 leading-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-gray-900 mb-6 sm:mb-8 leading-tight">
                 Ready to Start Your
-                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
+                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-1 sm:mt-2">
                   Cricket Journey?
                 </span>
               </h2>
               
-              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-medium max-w-4xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 leading-relaxed font-medium max-w-3xl sm:max-w-4xl mx-auto px-4 sm:px-0">
                 Join India's premier cricket academy and train with the best coaches in West Bengal.
-                <span className="block font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mt-3 text-2xl">
+                <span className="block font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mt-2 sm:mt-3 text-lg sm:text-xl md:text-2xl">
                   🏏 Book your free trial session today!
                 </span>
               </p>
             </div>
 
-            {/* Unified Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            {/* Mobile-Optimized Action Buttons */}
+            <div className="flex flex-col gap-4 sm:gap-6 justify-center mb-12 sm:mb-14 md:mb-16 px-4 sm:px-0">
               <Link
                 to="/programs"
-                className="cta-button group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-lg rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-500 hover:scale-105 transform overflow-hidden"
+                className="cta-button group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-base sm:text-lg rounded-xl sm:rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-500 hover:scale-105 transform overflow-hidden w-full sm:w-auto"
               >
-                <Trophy className="w-6 h-6 mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
+                <Trophy className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300" />
                 <span className="font-black">Explore Programs</span>
-                <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
               
               <a
                 href="#contact"
-                className="cta-button group relative inline-flex items-center px-12 py-6 bg-white/95 backdrop-blur-xl border border-orange-200/50 text-orange-800 font-bold text-lg rounded-2xl hover:bg-orange-50 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105"
+                className="cta-button group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 bg-white/95 backdrop-blur-xl border border-orange-200/50 text-orange-800 font-bold text-base sm:text-lg rounded-xl sm:rounded-2xl hover:bg-orange-50 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:scale-105 w-full sm:w-auto"
               >
-                <Play className="w-6 h-6 mr-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+                <Play className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
                 <span className="font-black">Book Free Trial</span>
-                <Calendar className="w-6 h-6 ml-3 group-hover:scale-110 transition-transform duration-300" />
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 group-hover:scale-110 transition-transform duration-300" />
               </a>
             </div>
             
-            {/* Unified Activity Indicator */}
-            <div className="inline-flex items-center px-8 py-4 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 mb-12 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10">
-              <div className="relative mr-4">
-                <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse"></div>
+            {/* Mobile-Optimized Activity Indicator */}
+            <div className="inline-flex items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-xl sm:rounded-2xl text-gray-800 mb-8 sm:mb-10 md:mb-12 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10 max-w-full mx-auto">
+              <div className="relative mr-3 sm:mr-4">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-orange-500 rounded-full animate-pulse"></div>
               </div>
-              <Activity className="w-5 h-5 mr-2 text-orange-500" />
-              <span className="font-bold text-lg">243 active students training right now</span>
-              <TrendingUp className="w-5 h-5 ml-3 text-amber-600 animate-bounce" />
+              <Activity className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-orange-500 flex-shrink-0" />
+              <span className="font-bold text-sm sm:text-base md:text-lg text-center">243 active students training right now</span>
+              <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 text-amber-600 animate-bounce flex-shrink-0" />
             </div>
 
-            {/* Unified Success Metrics Grid with warm colors */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {/* Mobile-Optimized Success Metrics Grid */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto px-2 sm:px-0">
               {[
                 { number: "98%", label: "Success Rate", icon: Target, iconColor: "text-amber-600", bgGradient: "from-amber-50 to-orange-100" },
                 { number: "500+", label: "Champions Trained", icon: Trophy, iconColor: "text-orange-600", bgGradient: "from-orange-50 to-red-100" },
@@ -1013,15 +1013,15 @@ const Home = () => {
               ].map((metric, index) => (
                 <div 
                   key={index} 
-                  className="group bg-white/95 backdrop-blur-xl border border-orange-200/30 rounded-2xl p-6 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:-translate-y-1 hover:scale-105"
+                  className="group bg-white/95 backdrop-blur-xl border border-orange-200/30 rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 hover:bg-orange-50/95 transition-all duration-500 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-red-500/20 transform hover:-translate-y-1 hover:scale-105"
                 >
-                  <div className={`w-12 h-12 bg-gradient-to-br ${metric.bgGradient} rounded-2xl mb-4 mx-auto flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
-                    <metric.icon className={`w-6 h-6 ${metric.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
+                  <div className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br ${metric.bgGradient} rounded-lg sm:rounded-xl md:rounded-2xl mb-2 sm:mb-3 md:mb-4 mx-auto flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
+                    <metric.icon className={`w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 ${metric.iconColor} group-hover:rotate-6 transition-transform duration-300`} />
                   </div>
-                  <div className="text-3xl lg:text-4xl font-black text-gray-900 mb-2 group-hover:scale-105 transition-transform duration-300">
+                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-1 sm:mb-2 group-hover:scale-105 transition-transform duration-300">
                     {metric.number}
                   </div>
-                  <div className="text-gray-600 font-semibold text-sm lg:text-base">
+                  <div className="text-gray-600 font-semibold text-xs sm:text-sm lg:text-base">
                     {metric.label}
                   </div>
                 </div>
