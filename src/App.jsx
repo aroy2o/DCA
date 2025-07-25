@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
@@ -27,10 +29,13 @@ const HashNavigationHandler = () => {
             block: 'start'
           })
         }, 100)
+        return
       }
     }
+    // Always scroll to top on route change if no hash
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [location])
-
+  
   return null
 }
 

@@ -6,6 +6,7 @@ import AwardWinningAnimations from '../components/Home/AwardWinningAnimations'
 import ParticleSystem from '../components/Home/ParticleSystem'
 import ChampionSuccessStories from '../components/Home/ChampionSuccessStories'
 import SectionSeparator from '../components/Home/SectionSeparator'
+import { motion } from 'framer-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -332,7 +333,6 @@ const About = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
           <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
-        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Consistent Header Style */}
           <div className="text-center mb-16">
@@ -341,19 +341,16 @@ const About = () => {
               <span className="text-sm tracking-wide font-bold">OUR JOURNEY</span>
               <div className="w-2 h-2 bg-amber-500 rounded-full ml-3 animate-pulse"></div>
             </div>
-            
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
               Our Journey in
               <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent font-black mt-2">
                 Numbers
               </span>
             </h2>
-            
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-medium">
               Every statistic tells a story of dedication, growth, and the relentless pursuit of excellence.
             </p>
           </div>
-
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {achievements.map((achievement, index) => {
               const Icon = achievement.icon
@@ -377,6 +374,67 @@ const About = () => {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* --- TESTIMONIALS SECTION (ADDED) --- */}
+      <section className="relative py-16 sm:py-24 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.04)_0%,transparent_60%)]"></div>
+          <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-orange-400/10 to-amber-400/10 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-10 right-10 w-56 h-56 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 font-semibold mb-6 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 group">
+              <Star className="w-5 h-5 mr-2 text-orange-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
+              <span className="text-sm tracking-wide font-bold">TESTIMONIALS</span>
+              <div className="w-2 h-2 bg-orange-500 rounded-full ml-3 animate-pulse"></div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 leading-tight">
+              What Our Champions Say
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0">
+              Real stories from our students and parents about their journey with Doars Cricket Academy.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'Amit S.',
+                photo: 'https://randomuser.me/api/portraits/men/32.jpg',
+                quote: 'The coaching and facilities at Doars are world-class. My son has improved tremendously and loves every session!'
+              },
+              {
+                name: 'Priya D.',
+                photo: 'https://randomuser.me/api/portraits/women/44.jpg',
+                quote: 'Joining Doars was the best decision for my cricket career. The personalized attention and modern training made all the difference.'
+              },
+              {
+                name: 'Rahul K.',
+                photo: 'https://randomuser.me/api/portraits/men/65.jpg',
+                quote: 'From fitness to match preparation, everything is top-notch. The coaches truly care about our progress.'
+              },
+              {
+                name: 'Sneha M.',
+                photo: 'https://randomuser.me/api/portraits/women/68.jpg',
+                quote: 'The academy feels like family. I have made lifelong friends and grown so much as a player and person.'
+              }
+            ].map((testimonial, idx) => (
+              <motion.div
+                key={testimonial.name}
+                className="bg-white/95 backdrop-blur-xl border border-orange-200/30 rounded-3xl p-8 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card text-center group cursor-pointer flex flex-col items-center"
+                whileHover={{ y: -8, scale: 1.04, boxShadow: '0 8px 32px rgba(251,191,36,0.18)' }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: idx * 0.08 }}
+              >
+                <img src={testimonial.photo} alt={testimonial.name} className="w-20 h-20 rounded-full mb-4 border-4 border-orange-100 shadow-md group-hover:scale-110 transition-transform duration-300" />
+                <blockquote className="text-gray-700 italic mb-4">“{testimonial.quote}”</blockquote>
+                <div className="font-bold text-orange-700 text-lg">{testimonial.name}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

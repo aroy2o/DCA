@@ -44,12 +44,9 @@ body {
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;
-}
-
-/* Prevent layout shift during scroll */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 4rem;
+  background-color: #fff;
+  color: #1a202c;
+  transition: color 0.5s, background-color 0.5s;
 }
 
 body {
@@ -58,7 +55,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply transition-colors duration-500;
 }
 
 /* Clean card effects */

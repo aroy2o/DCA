@@ -13,6 +13,7 @@ import AwardWinningAnimations from '../components/Home/AwardWinningAnimations'
 import MicroInteractions from '../components/Home/MicroInteractions'
 import ChampionSuccessStories from '../components/Home/ChampionSuccessStories'
 import SectionSeparator from '../components/Home/SectionSeparator'
+import { motion } from 'framer-motion'
 
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, TextPlugin)
@@ -1059,6 +1060,42 @@ const Home = () => {
       <div className="newsletter-section">
         <Newsletter />
       </div>
+
+      {/* Social Links Bar - Added for hackathon polish */}
+      <footer className="w-full py-8 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 border-t border-orange-100 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="text-lg font-bold text-gray-800 mb-2 sm:mb-0">Connect with us:</div>
+          <div className="flex gap-5">
+            {[
+              { href: 'https://instagram.com/', label: 'Instagram', icon: (
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="6" strokeWidth="2"/><circle cx="12" cy="12" r="5" strokeWidth="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+              ) },
+              { href: 'https://facebook.com/', label: 'Facebook', icon: (
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="6" strokeWidth="2"/><path d="M16 8h-2a2 2 0 00-2 2v2h4l-.5 3H12v7" strokeWidth="2"/></svg>
+              ) },
+              { href: 'https://twitter.com/', label: 'Twitter', icon: (
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="6" strokeWidth="2"/><path d="M8 19c7.5 0 11.5-6.2 11.5-11.5v-.5A8.2 8.2 0 0022 5.5a8.1 8.1 0 01-2.3.6A4.1 4.1 0 0021.5 3a8.2 8.2 0 01-2.6 1A4.1 4.1 0 0012 8.1c0 .3 0 .6.1.9A11.7 11.7 0 013 4.1a4.1 4.1 0 001.3 5.5A4.1 4.1 0 012 8.6v.1a4.1 4.1 0 003.3 4A4.1 4.1 0 012 13v.1a8.2 8.2 0 005.5 1.6" strokeWidth="2"/></svg>
+              ) },
+              { href: 'https://youtube.com/', label: 'YouTube', icon: (
+                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect width="20" height="20" x="2" y="2" rx="6" strokeWidth="2"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
+              ) },
+            ].map((social, idx) => (
+              <motion.a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-800 transition-colors duration-300"
+                whileHover={{ scale: 1.2, rotate: 8 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label={social.label}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

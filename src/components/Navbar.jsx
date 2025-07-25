@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
-import { Menu, X, Trophy, Users, User, Phone, Sparkles } from 'lucide-react'
+import { Menu, X, Trophy, Users, User, Phone, Sparkles, Sun, Moon } from 'lucide-react'
 import { BUTTON_STYLES } from '../constants/styles'
 
-const Navbar = () => {
+const Navbar = ({ }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hoveredItem, setHoveredItem] = useState(null)
