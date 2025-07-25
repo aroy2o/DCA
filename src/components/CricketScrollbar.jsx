@@ -95,8 +95,19 @@ const CricketScrollbar = () => {
           x: 0 
         }}
         transition={{ duration: 0.3 }}
+        whileHover={{ 
+          scale: 1.02,
+          x: -2,
+          transition: { duration: 0.2 }
+        }}
       >
-        <div className="cricket-scrollbar-track">
+        <motion.div 
+          className="cricket-scrollbar-track"
+          whileHover={{ 
+            boxShadow: "0 0 20px rgba(34, 197, 94, 0.3)",
+            transition: { duration: 0.3 }
+          }}
+        >
           {/* Section Markers */}
           <div className="section-markers">
             {[20, 40, 60, 80].map((pos, index) => (
@@ -104,11 +115,38 @@ const CricketScrollbar = () => {
                 key={index}
                 className="section-marker"
                 style={{ top: `${pos}%` }}
-                whileHover={{ scale: 1.5, backgroundColor: '#22c55e' }}
+                whileHover={{ 
+                  scale: 1.8, 
+                  backgroundColor: '#22c55e',
+                  boxShadow: "0 0 15px rgba(34, 197, 94, 0.6)"
+                }}
+                whileTap={{ scale: 1.2 }}
                 onClick={() => scrollToPosition(pos)}
+                initial={{ scale: 0.8, opacity: 0.6 }}
+                animate={{ 
+                  scale: 1, 
+                  opacity: Math.abs(scrollProgress - pos) < 10 ? 1 : 0.6,
+                  backgroundColor: Math.abs(scrollProgress - pos) < 10 ? '#22c55e' : '#64748b'
+                }}
+                transition={{ duration: 0.3 }}
               />
             ))}
           </div>
+          
+          {/* Progress Trail */}
+          <motion.div
+            className="progress-trail"
+            style={{ 
+              height: `${scrollProgress}%`,
+              background: `linear-gradient(to bottom, 
+                rgba(34, 197, 94, 0.8) 0%, 
+                rgba(34, 197, 94, 0.4) 50%, 
+                rgba(34, 197, 94, 0.1) 100%)`
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isScrolling ? 0.8 : 0.4 }}
+            transition={{ duration: 0.3 }}
+          />
           
           {/* Cricket Ball Thumb */}
           <motion.div
@@ -117,8 +155,26 @@ const CricketScrollbar = () => {
             drag="y"
             dragConstraints={{ top: 0, bottom: 0 }}
             dragElastic={0.1}
-            whileHover={{ scale: 1.2 }}
-            whileDrag={{ scale: 1.3 }}
+            whileHover={{ 
+              scale: 1.3,
+              rotateZ: 360,
+              transition: { 
+                scale: { duration: 0.2 },
+                rotateZ: { duration: 0.8, ease: "easeInOut" }
+              }
+            }}
+            whileDrag={{ 
+              scale: 1.4,
+              rotateZ: 180,
+              boxShadow: "0 0 25px rgba(34, 197, 94, 0.8)",
+              transition: { duration: 0.2 }
+            }}
+            animate={{
+              y: isScrolling ? [0, -2, 0] : 0,
+              transition: { 
+                y: { duration: 0.6, repeat: isScrolling ? Infinity : 0, ease: "easeInOut" }
+              }
+            }}
             onDrag={(e, info) => {
               const container = e.target.closest('.cricket-scrollbar-track')
               const rect = container.getBoundingClientRect()
@@ -126,21 +182,66 @@ const CricketScrollbar = () => {
               scrollToPosition(percentage)
             }}
           >
-            <div className="ball-texture">
-              <div className="seam-line"></div>
-              <div className="seam-curve seam-curve-1"></div>
-              <div className="seam-curve seam-curve-2"></div>
-            </div>
+            <motion.div 
+              className="ball-texture"
+              whileHover={{
+                boxShadow: "inset 0 0 15px rgba(255, 255, 255, 0.3)",
+                transition: { duration: 0.3 }
+              }}
+            >
+              <motion.div 
+                className="seam-line"
+                animate={{
+                  opacity: isScrolling ? [0.5, 1, 0.5] : 0.7,
+                  transition: { 
+                    duration: 1, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
+              ></motion.div>
+              <motion.div 
+                className="seam-curve seam-curve-1"
+                animate={{
+                  scale: isScrolling ? [1, 1.1, 1] : 1,
+                  transition: { 
+                    duration: 0.8, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
+              ></motion.div>
+              <motion.div 
+                className="seam-curve seam-curve-2"
+                animate={{
+                  scale: isScrolling ? [1, 1.1, 1] : 1,
+                  transition: { 
+                    duration: 0.8, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut",
+                    delay: 0.2
+                  }
+                }}
+              ></motion.div>
+            </motion.div>
             
             {/* Progress Ring */}
             <svg className="progress-ring" width="32" height="32">
-              <circle
+              <motion.circle
                 cx="16"
                 cy="16"
                 r="14"
                 fill="none"
                 stroke="rgba(34, 197, 94, 0.2)"
                 strokeWidth="2"
+                animate={{
+                  scale: isScrolling ? [1, 1.1, 1] : 1,
+                  transition: { 
+                    duration: 1, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
               />
               <motion.circle
                 cx="16"
@@ -153,8 +254,18 @@ const CricketScrollbar = () => {
                 strokeDasharray={87.96}
                 strokeDashoffset={87.96 - (87.96 * scrollProgress) / 100}
                 initial={{ strokeDashoffset: 87.96 }}
-                animate={{ strokeDashoffset: 87.96 - (87.96 * scrollProgress) / 100 }}
+                animate={{ 
+                  strokeDashoffset: 87.96 - (87.96 * scrollProgress) / 100,
+                  filter: isScrolling ? 
+                    "drop-shadow(0 0 8px rgba(34, 197, 94, 0.8))" : 
+                    "drop-shadow(0 0 4px rgba(34, 197, 94, 0.4))"
+                }}
                 transition={{ duration: 0.3 }}
+                whileHover={{
+                  stroke: "#10b981",
+                  filter: "drop-shadow(0 0 12px rgba(16, 185, 129, 1))",
+                  transition: { duration: 0.2 }
+                }}
               />
             </svg>
           </motion.div>
@@ -162,36 +273,140 @@ const CricketScrollbar = () => {
           {/* Progress Percentage */}
           <motion.div
             className="scroll-percentage"
-            animate={{ opacity: isScrolling ? 1 : 0 }}
+            animate={{ 
+              opacity: isScrolling ? 1 : 0,
+              scale: isScrolling ? 1 : 0.9,
+              y: isScrolling ? 0 : 5
+            }}
             transition={{ duration: 0.3 }}
+            whileHover={{
+              scale: 1.1,
+              color: "#10b981",
+              textShadow: "0 0 10px rgba(16, 185, 129, 0.8)",
+              transition: { duration: 0.2 }
+            }}
           >
-            {Math.round(scrollProgress)}%
+            <motion.span
+              animate={{
+                rotateX: isScrolling ? [0, 360] : 0,
+                transition: { 
+                  duration: 2, 
+                  repeat: isScrolling ? Infinity : 0,
+                  ease: "linear"
+                }
+              }}
+            >
+              {Math.round(scrollProgress)}%
+            </motion.span>
           </motion.div>
-        </div>
+        </motion.div>
         
         {/* Current Section Tooltip */}
         <AnimatePresence>
           {(showTooltip || isScrolling) && currentSection && (
             <motion.div
               className="section-tooltip"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, x: 10, scale: 0.8 }}
+              animate={{ 
+                opacity: 1, 
+                x: 0, 
+                scale: 1,
+                rotateY: [0, 5, 0],
+                transition: { 
+                  opacity: { duration: 0.2 },
+                  x: { duration: 0.2 },
+                  scale: { duration: 0.3 },
+                  rotateY: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+                }
+              }}
+              exit={{ opacity: 0, x: 10, scale: 0.8 }}
+              whileHover={{
+                scale: 1.05,
+                x: -5,
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.3)",
+                transition: { duration: 0.2 }
+              }}
             >
-              <div className="tooltip-content">
-                <span className="section-name">
+              <motion.div 
+                className="tooltip-content"
+                whileHover={{
+                  background: "linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(16, 185, 129, 0.1))",
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <motion.span 
+                  className="section-name"
+                  animate={{
+                    color: isScrolling ? ["#22c55e", "#10b981", "#22c55e"] : "#22c55e",
+                    transition: { 
+                      duration: 2, 
+                      repeat: isScrolling ? Infinity : 0,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    textShadow: "0 0 10px rgba(34, 197, 94, 0.8)",
+                    transition: { duration: 0.2 }
+                  }}
+                >
                   {getSectionName(currentSection)}
-                </span>
-                <div className="cricket-field-mini">
-                  <div className="mini-pitch"></div>
-                  <div 
+                </motion.span>
+                <motion.div 
+                  className="cricket-field-mini"
+                  whileHover={{
+                    scale: 1.1,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <motion.div 
+                    className="mini-pitch"
+                    animate={{
+                      backgroundColor: isScrolling ? 
+                        ["rgba(34, 197, 94, 0.3)", "rgba(16, 185, 129, 0.5)", "rgba(34, 197, 94, 0.3)"] :
+                        "rgba(34, 197, 94, 0.3)",
+                      transition: { 
+                        duration: 1.5, 
+                        repeat: isScrolling ? Infinity : 0,
+                        ease: "easeInOut"
+                      }
+                    }}
+                  ></motion.div>
+                  <motion.div 
                     className="mini-ball" 
                     style={{ left: `${scrollProgress}%` }}
-                  ></div>
-                </div>
-              </div>
-              <div className="tooltip-arrow"></div>
+                    animate={{
+                      scale: isScrolling ? [1, 1.3, 1] : 1,
+                      rotateZ: isScrolling ? 360 : 0,
+                      boxShadow: isScrolling ? 
+                        ["0 0 5px rgba(34, 197, 94, 0.8)", "0 0 15px rgba(16, 185, 129, 1)", "0 0 5px rgba(34, 197, 94, 0.8)"] :
+                        "0 0 5px rgba(34, 197, 94, 0.5)",
+                      transition: { 
+                        scale: { duration: 0.8, repeat: isScrolling ? Infinity : 0, ease: "easeInOut" },
+                        rotateZ: { duration: 1, repeat: isScrolling ? Infinity : 0, ease: "linear" },
+                        boxShadow: { duration: 1.2, repeat: isScrolling ? Infinity : 0, ease: "easeInOut" }
+                      }
+                    }}
+                    whileHover={{
+                      scale: 1.5,
+                      transition: { duration: 0.2 }
+                    }}
+                  ></motion.div>
+                </motion.div>
+              </motion.div>
+              <motion.div 
+                className="tooltip-arrow"
+                animate={{
+                  borderLeftColor: isScrolling ? 
+                    ["rgba(34, 197, 94, 0.9)", "rgba(16, 185, 129, 1)", "rgba(34, 197, 94, 0.9)"] :
+                    "rgba(34, 197, 94, 0.9)",
+                  transition: { 
+                    duration: 2, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
+              ></motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -202,19 +417,131 @@ const CricketScrollbar = () => {
         {scrollProgress > 20 && (
           <motion.button
             className="scroll-to-top-cricket"
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.8, y: 20, rotateZ: -180 }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: 0, 
+              rotateZ: 0,
+              transition: { 
+                opacity: { duration: 0.3 },
+                scale: { duration: 0.4, type: "spring", stiffness: 300 },
+                y: { duration: 0.4, type: "spring", stiffness: 300 },
+                rotateZ: { duration: 0.6, ease: "easeOut" }
+              }
+            }}
+            exit={{ 
+              opacity: 0, 
+              scale: 0.8, 
+              y: 20, 
+              rotateZ: 180,
+              transition: { 
+                duration: 0.3,
+                rotateZ: { duration: 0.5 }
+              }
+            }}
+            whileHover={{ 
+              scale: 1.15, 
+              y: -5,
+              rotateZ: [0, -10, 10, 0],
+              boxShadow: "0 10px 30px rgba(34, 197, 94, 0.4)",
+              transition: { 
+                scale: { duration: 0.2 },
+                y: { duration: 0.2 },
+                rotateZ: { duration: 0.6, ease: "easeInOut" },
+                boxShadow: { duration: 0.3 }
+              }
+            }}
+            whileTap={{ 
+              scale: 0.9,
+              y: 0,
+              transition: { duration: 0.1 }
+            }}
             onClick={() => scrollToPosition(0)}
-            transition={{ duration: 0.3 }}
+            animate={{
+              y: isScrolling ? [0, -3, 0] : 0,
+              transition: { 
+                y: { 
+                  duration: 1.5, 
+                  repeat: isScrolling ? Infinity : 0, 
+                  ease: "easeInOut" 
+                }
+              }
+            }}
           >
-            <div className="cricket-bat">
-              <div className="bat-blade"></div>
-              <div className="bat-handle"></div>
-            </div>
-            <span className="scroll-text">Top</span>
+            <motion.div 
+              className="cricket-bat"
+              whileHover={{
+                rotateZ: [0, 15, -15, 0],
+                scale: 1.1,
+                transition: { 
+                  rotateZ: { duration: 0.8, ease: "easeInOut" },
+                  scale: { duration: 0.2 }
+                }
+              }}
+              animate={{
+                rotateZ: isScrolling ? [0, 5, -5, 0] : 0,
+                transition: { 
+                  duration: 2, 
+                  repeat: isScrolling ? Infinity : 0,
+                  ease: "easeInOut"
+                }
+              }}
+            >
+              <motion.div 
+                className="bat-blade"
+                animate={{
+                  background: isScrolling ? 
+                    ["linear-gradient(45deg, #8B4513, #D2691E)", "linear-gradient(45deg, #D2691E, #CD853F)", "linear-gradient(45deg, #8B4513, #D2691E)"] :
+                    "linear-gradient(45deg, #8B4513, #D2691E)",
+                  transition: { 
+                    duration: 1.5, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
+                whileHover={{
+                  boxShadow: "inset 0 0 10px rgba(255, 255, 255, 0.3)",
+                  transition: { duration: 0.3 }
+                }}
+              ></motion.div>
+              <motion.div 
+                className="bat-handle"
+                animate={{
+                  scale: isScrolling ? [1, 1.05, 1] : 1,
+                  transition: { 
+                    duration: 1, 
+                    repeat: isScrolling ? Infinity : 0,
+                    ease: "easeInOut"
+                  }
+                }}
+                whileHover={{
+                  background: "linear-gradient(to bottom, #654321, #8B4513)",
+                  transition: { duration: 0.3 }
+                }}
+              ></motion.div>
+            </motion.div>
+            <motion.span 
+              className="scroll-text"
+              animate={{
+                color: isScrolling ? ["#22c55e", "#10b981", "#22c55e"] : "#22c55e",
+                textShadow: isScrolling ? 
+                  ["0 0 5px rgba(34, 197, 94, 0.8)", "0 0 10px rgba(16, 185, 129, 1)", "0 0 5px rgba(34, 197, 94, 0.8)"] :
+                  "0 0 5px rgba(34, 197, 94, 0.5)",
+                transition: { 
+                  duration: 2, 
+                  repeat: isScrolling ? Infinity : 0,
+                  ease: "easeInOut"
+                }
+              }}
+              whileHover={{
+                scale: 1.1,
+                y: -2,
+                transition: { duration: 0.2 }
+              }}
+            >
+              Top
+            </motion.span>
           </motion.button>
         )}
       </AnimatePresence>

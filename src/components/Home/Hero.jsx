@@ -264,47 +264,64 @@ const Hero = () => {
 
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 py-8 sm:py-12 md:py-16">
         <div className="max-w-3xl sm:max-w-4xl md:max-w-6xl mx-auto">
-          {/* Mobile-Optimized Hero Badge */}
+          {/* Enhanced Interactive Hero Badge */}
           <div
             ref={badgeRef}
-            className="inline-flex items-center px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 mb-8 sm:mb-12 md:mb-16 relative"
+            className="magic-hover inline-flex items-center px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 mb-8 sm:mb-12 md:mb-16 relative group cursor-pointer transition-all duration-700"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-100/50 sm:border-2"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl border border-gray-100/50 sm:border-2 group-hover:shadow-3xl group-hover:shadow-amber-200/30 transition-all duration-700"></div>
+            
+            {/* Interactive glow background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-orange-400/0 to-red-400/0 group-hover:from-amber-400/10 group-hover:via-orange-400/10 group-hover:to-red-400/10 rounded-2xl sm:rounded-3xl transition-all duration-700"></div>
+            
+            {/* Magnetic hover effect background */}
+            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
             <div className="relative flex items-center space-x-2 sm:space-x-3 md:space-x-4">
               <div className="flex items-center space-x-1 sm:space-x-2">
-                <div className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg"></div>
+                <div className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse shadow-lg group-hover:scale-125 group-hover:shadow-green-400/50 transition-all duration-500"></div>
                 <div
-                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse"
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse group-hover:scale-125 group-hover:shadow-amber-400/50 transition-all duration-500"
                   style={{ animationDelay: "0.3s" }}
                 ></div>
               </div>
-              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-gray-800 tracking-wide sm:tracking-wider uppercase">
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-black text-gray-800 tracking-wide sm:tracking-wider uppercase group-hover:text-gray-900 transition-colors duration-500">
                 🏏 West Bengal's Premier Academy
               </span>
               <div className="flex items-center space-x-1 sm:space-x-2">
                 <div
-                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse"
+                  className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-br from-red-500 to-pink-600 rounded-full animate-pulse group-hover:scale-125 group-hover:shadow-red-400/50 transition-all duration-500"
                   style={{ animationDelay: "0.6s" }}
                 ></div>
                 <div
-                  className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse"
+                  className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full animate-pulse group-hover:scale-125 group-hover:shadow-amber-400/50 transition-all duration-500"
                   style={{ animationDelay: "0.9s" }}
                 ></div>
               </div>
             </div>
+            
+            {/* Floating particles on hover */}
+            <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div className="absolute top-2 left-4 w-1 h-1 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="absolute top-4 right-6 w-1 h-1 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+              <div className="absolute bottom-3 left-8 w-1 h-1 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+              <div className="absolute bottom-2 right-4 w-1 h-1 bg-orange-400 rounded-full animate-bounce" style={{ animationDelay: '0.7s' }}></div>
+            </div>
           </div>
 
-          {/* Mobile-Optimized Typography */}
+          {/* Enhanced Interactive Typography */}
           <div ref={titleRef} className="mb-8 sm:mb-12 md:mb-16">
             <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 sm:mb-8 md:mb-10 leading-tight sm:leading-none tracking-tight">
-              <span className="block text-gray-900 mb-3 sm:mb-4 md:mb-6 drop-shadow-sm">
-                Master The
+              <span className="group block text-gray-900 mb-3 sm:mb-4 md:mb-6 drop-shadow-sm hover:drop-shadow-lg transition-all duration-700 cursor-default magic-hover">
+                <span className="inline-block transition-all duration-700 group-hover:scale-105 group-hover:text-gray-800">Master The</span>
               </span>
-              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-3 sm:mb-4 md:mb-6 filter drop-shadow-lg">
-                Art of Cricket
+              <span className="group block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-3 sm:mb-4 md:mb-6 filter drop-shadow-lg hover:drop-shadow-2xl transition-all duration-700 cursor-default magic-hover relative">
+                <span className="inline-block transition-all duration-700 group-hover:scale-105 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 bg-clip-text group-hover:from-amber-400 group-hover:via-orange-400 group-hover:to-red-400">Art of Cricket</span>
+                {/* Shimmer effect overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-700"></div>
               </span>
-              <span className="block text-gray-800 text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl">
-                Excellence
+              <span className="group block text-gray-800 text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl hover:text-gray-700 transition-all duration-700 cursor-default magic-hover">
+                <span className="inline-block transition-all duration-700 group-hover:scale-105">Excellence</span>
               </span>
             </h1>
           </div>
@@ -331,7 +348,7 @@ const Hero = () => {
             </span>
           </p>
 
-          {/* Mobile-Optimized Stats Cards */}
+          {/* Enhanced Interactive Stats Cards */}
           <div
             ref={statsRef}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mb-12 sm:mb-16 md:mb-20 max-w-4xl sm:max-w-5xl mx-auto px-4 sm:px-0"
@@ -342,69 +359,130 @@ const Hero = () => {
                 label: "Champions Created",
                 icon: Trophy,
                 color: "from-amber-500 to-orange-600",
+                hoverColor: "from-amber-400 to-orange-500",
+                accentColor: "amber"
               },
               {
                 number: "15+",
                 label: "Years of Excellence",
                 icon: Award,
                 color: "from-green-500 to-emerald-600",
+                hoverColor: "from-green-400 to-emerald-500",
+                accentColor: "green"
               },
               {
                 number: "98%",
                 label: "Success Rate",
                 icon: Target,
                 color: "from-red-500 to-pink-600",
+                hoverColor: "from-red-400 to-pink-500",
+                accentColor: "red"
               },
             ].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg sm:shadow-xl hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 border border-gray-100/50 sm:border-2 hover:border-gray-200/80 hover:scale-105"
+                className="magic-hover group relative bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg sm:shadow-xl hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 border border-gray-100/50 sm:border-2 hover:border-gray-200/80 hover:scale-105 cursor-pointer overflow-hidden"
               >
+                {/* Enhanced background glow on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.hoverColor} opacity-0 group-hover:opacity-5 transition-opacity duration-700 rounded-2xl sm:rounded-3xl`}></div>
+                
+                {/* Interactive particle effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className={`absolute top-2 left-4 w-1 h-1 bg-${stat.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.1s' }}></div>
+                  <div className={`absolute top-6 right-3 w-1 h-1 bg-${stat.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.3s' }}></div>
+                  <div className={`absolute bottom-8 left-2 w-1 h-1 bg-${stat.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.5s' }}></div>
+                  <div className={`absolute bottom-3 right-5 w-1 h-1 bg-${stat.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.7s' }}></div>
+                </div>
+                
+                {/* Floating shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-700 rounded-2xl sm:rounded-3xl"></div>
+                
                 <div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${stat.color} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 md:mb-8 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg`}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${stat.color} group-hover:bg-gradient-to-br group-hover:${stat.hoverColor} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6 md:mb-8 mx-auto group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-xl relative z-10`}
                 >
-                  <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
+                  <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform duration-500" />
+                  
+                  {/* Icon glow effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-30 group-hover:scale-150 blur-md transition-all duration-500`}></div>
                 </div>
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-2 sm:mb-3 md:mb-4">
-                  {stat.number}
+                
+                <div className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-800 mb-2 sm:mb-3 md:mb-4 group-hover:scale-105 group-hover:text-gray-900 transition-all duration-500 relative z-10">
+                  <span className="inline-block group-hover:animate-pulse">{stat.number}</span>
                 </div>
-                <div className="text-gray-600 font-bold text-sm sm:text-base md:text-lg">
+                
+                <div className="text-gray-600 font-bold text-sm sm:text-base md:text-lg group-hover:text-gray-700 transition-colors duration-500 relative z-10">
                   {stat.label}
                 </div>
 
+                {/* Enhanced progress bar with animation */}
                 <div
                   className={`absolute bottom-0 left-0 w-full h-1 sm:h-2 bg-gradient-to-r ${stat.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 rounded-b-2xl sm:rounded-b-3xl`}
                 ></div>
+                
+                {/* Subtle pulsing border */}
+                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-${stat.accentColor}-400/0 group-hover:border-${stat.accentColor}-400/20 transition-all duration-700`}></div>
               </div>
             ))}
           </div>
 
-          {/* Mobile-Optimized Action Buttons */}
+          {/* Enhanced Interactive Action Buttons */}
           <div
             ref={buttonsRef}
             className="flex flex-col gap-4 sm:gap-6 md:gap-8 justify-center mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0"
           >
             <Link
               to="/programs"
-              className="group relative inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black text-lg sm:text-xl md:text-2xl rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl hover:shadow-2xl sm:hover:shadow-3xl transition-all duration-700 hover:scale-105 sm:hover:scale-110 transform overflow-hidden"
+              className="magic-hover group relative inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black text-lg sm:text-xl md:text-2xl rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl hover:shadow-2xl sm:hover:shadow-3xl transition-all duration-700 hover:scale-105 sm:hover:scale-110 transform overflow-hidden"
             >
+              {/* Enhanced background gradient animation */}
               <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Ripple effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 group-hover:animate-ripple transition-opacity duration-700 rounded-2xl sm:rounded-3xl"></div>
+              
+              {/* Magnetic glow effect */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-30 blur-lg transition-all duration-700"></div>
+              
+              {/* Floating particles */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute top-2 left-6 w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                <div className="absolute top-4 right-8 w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute bottom-3 left-12 w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute bottom-2 right-6 w-1 h-1 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.7s' }}></div>
+              </div>
+              
               <Trophy className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mr-3 sm:mr-4 md:mr-5 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-500 relative z-10" />
-              <span className="relative z-10">Begin Your Legacy</span>
+              <span className="relative z-10 group-hover:scale-105 transition-transform duration-500">Begin Your Legacy</span>
               <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 ml-3 sm:ml-4 md:ml-5 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-500 relative z-10" />
             </Link>
 
             <a
               href="#contact"
-              className="group relative inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 bg-white/95 backdrop-blur-sm border-2 sm:border-3 md:border-4 border-gray-300 text-gray-800 font-black text-lg sm:text-xl md:text-2xl rounded-2xl sm:rounded-3xl hover:bg-gray-50 transition-all duration-700 shadow-xl sm:shadow-2xl hover:shadow-2xl sm:hover:shadow-3xl transform hover:scale-105 sm:hover:scale-110 overflow-hidden"
+              className="magic-hover group relative inline-flex items-center justify-center px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 bg-white/95 backdrop-blur-sm border-2 sm:border-3 md:border-4 border-gray-300 text-gray-800 font-black text-lg sm:text-xl md:text-2xl rounded-2xl sm:rounded-3xl hover:bg-gray-50 transition-all duration-700 shadow-xl sm:shadow-2xl hover:shadow-2xl sm:hover:shadow-3xl transform hover:scale-105 sm:hover:scale-110 overflow-hidden"
             >
+              {/* Enhanced background animation */}
               <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Subtle border glow */}
+              <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-gray-400/0 group-hover:border-gray-400/30 transition-all duration-700"></div>
+              
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-200/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-700 rounded-2xl sm:rounded-3xl"></div>
+              
+              {/* Floating particles */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                <div className="absolute top-2 left-6 w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                <div className="absolute top-4 right-8 w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                <div className="absolute bottom-3 left-12 w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+                <div className="absolute bottom-2 right-6 w-1 h-1 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.7s' }}></div>
+              </div>
+              
               <Calendar className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mr-3 sm:mr-4 md:mr-5 group-hover:scale-125 transition-transform duration-500 relative z-10" />
-              <span className="relative z-10">Free Trial Session</span>
+              <span className="relative z-10 group-hover:scale-105 transition-transform duration-500">Free Trial Session</span>
             </a>
           </div>
 
-          {/* Mobile-Optimized Trust Indicators */}
+          {/* Enhanced Interactive Trust Indicators */}
           <div
             ref={trustRef}
             className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0"
@@ -414,30 +492,57 @@ const Hero = () => {
                 icon: CheckCircle,
                 text: "BCCI CERTIFIED",
                 color: "from-green-500 to-emerald-600",
+                hoverColor: "from-green-400 to-emerald-500",
+                accentColor: "green",
               },
               {
                 icon: Trophy,
                 text: "AWARD WINNING",
                 color: "from-amber-500 to-orange-600",
+                hoverColor: "from-amber-400 to-orange-500",
+                accentColor: "amber",
               },
               {
                 icon: Star,
                 text: "500+ CHAMPIONS",
                 color: "from-red-500 to-pink-600",
+                hoverColor: "from-red-400 to-pink-500",
+                accentColor: "red",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className="group flex items-center justify-center sm:justify-start px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 border border-gray-100/50 sm:border-2 hover:border-gray-200/80 hover:scale-105 w-full sm:w-auto"
+                className="magic-hover group flex items-center justify-center sm:justify-start px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-lg sm:shadow-xl hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 border border-gray-100/50 sm:border-2 hover:border-gray-200/80 hover:scale-105 w-full sm:w-auto cursor-pointer relative overflow-hidden"
               >
-                <div
-                  className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br ${item.color} rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 md:mr-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg`}
-                >
-                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white" />
+                {/* Enhanced background glow */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${item.hoverColor} opacity-0 group-hover:opacity-5 transition-opacity duration-700 rounded-2xl sm:rounded-3xl`}></div>
+                
+                {/* Magnetic shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-700 rounded-2xl sm:rounded-3xl"></div>
+                
+                {/* Floating particles */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className={`absolute top-2 left-4 w-1 h-1 bg-${item.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.1s' }}></div>
+                  <div className={`absolute top-4 right-6 w-1 h-1 bg-${item.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.3s' }}></div>
+                  <div className={`absolute bottom-3 left-8 w-1 h-1 bg-${item.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.5s' }}></div>
+                  <div className={`absolute bottom-2 right-4 w-1 h-1 bg-${item.accentColor}-400 rounded-full animate-bounce`} style={{ animationDelay: '0.7s' }}></div>
                 </div>
-                <span className="text-gray-800 font-black text-sm sm:text-base md:text-lg tracking-wider">
+                
+                <div
+                  className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br ${item.color} group-hover:bg-gradient-to-br group-hover:${item.hoverColor} rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 md:mr-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg group-hover:shadow-xl relative z-10`}
+                >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform duration-500" />
+                  
+                  {/* Icon glow effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-30 group-hover:scale-150 blur-md transition-all duration-500`}></div>
+                </div>
+                
+                <span className="text-gray-800 font-black text-sm sm:text-base md:text-lg tracking-wider group-hover:text-gray-900 group-hover:scale-105 transition-all duration-500 relative z-10">
                   {item.text}
                 </span>
+                
+                {/* Enhanced border accent */}
+                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-${item.accentColor}-400/0 group-hover:border-${item.accentColor}-400/20 transition-all duration-700`}></div>
               </div>
             ))}
           </div>

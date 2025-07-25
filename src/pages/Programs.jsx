@@ -450,10 +450,24 @@ const Programs = () => {
                     delay: index * 0.15,
                     ease: [0.23, 1, 0.32, 1]
                   }}
-                  className="program-card relative group cursor-pointer bg-white/95 backdrop-blur-sm border border-gray-100 sm:border-2 hover:border-orange-200/80 hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 rounded-2xl sm:rounded-3xl overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-105"
-                  onMouseEnter={() => setHoveredCard(program.id)}
+                  className="program-card magic-hover interactive-element relative group cursor-pointer bg-white/95 backdrop-blur-sm border border-gray-100 sm:border-2 hover:border-orange-200/80 hover:shadow-xl sm:hover:shadow-2xl transition-all duration-700 rounded-2xl sm:rounded-3xl overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 hover:scale-105"
+                  onMouseEnter={() => {
+                    setHoveredCard(program.id)
+                    // Create floating particles on hover
+                    createHoverParticles(program.id)
+                  }}
                   onMouseLeave={() => setHoveredCard(null)}
-                  whileHover={{ y: -8, rotateY: 3 }}
+                  onClick={() => createClickEffect(program.id)}
+                  whileHover={{ 
+                    y: -8, 
+                    rotateY: 3,
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)"
+                  }}
+                  whileTap={{ 
+                    scale: 0.98, 
+                    rotateY: -1,
+                    transition: { duration: 0.1 }
+                  }}
                 >
                   {/* Mobile-Optimized Card Header */}
                   <div className="relative p-4 sm:p-6 lg:p-8 pb-3 sm:pb-4 lg:pb-6">

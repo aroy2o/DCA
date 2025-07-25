@@ -175,36 +175,78 @@ const Features = ({ features = [] }) => {
                     cardsRef.current[index] = el
                   }
                 }}
-                className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-gray-200 overflow-hidden transform-gpu"
+                className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-700 border-2 border-gray-100 hover:border-gray-200 overflow-hidden transform-gpu feature-card"
               >
                 {/* Hexagonal accent */}
                 <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 transform rotate-45 rounded-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
                 
-                {/* Icon with hexagonal background */}
-                <div className="feature-icon relative mb-6">
-                  <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl transform rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-lg`}>
-                  </div>
-                  <div className="absolute inset-0 w-20 h-20 bg-white/90 rounded-2xl scale-75 flex items-center justify-center">
-                    <Icon className="w-10 h-10 text-gray-700" />
-                  </div>
+                {/* Enhanced background glow effect */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-700 rounded-2xl`}></div>
+                
+                {/* Interactive particle system on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute top-3 left-6 w-1 h-1 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                  <div className="absolute top-6 right-8 w-1 h-1 bg-teal-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></div>
+                  <div className="absolute bottom-4 left-12 w-1 h-1 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
+                  <div className="absolute bottom-8 right-6 w-1 h-1 bg-green-400 rounded-full animate-bounce" style={{ animationDelay: '0.7s' }}></div>
                 </div>
                 
-                {/* Content */}
-                <div className="feature-content">
-                  <h3 className="text-2xl font-black text-gray-900 mb-4 group-hover:text-emerald-700 transition-colors duration-300">
+                {/* Ripple effect overlay */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none">
+                  <div 
+                    className="absolute inset-0 rounded-2xl"
+                    style={{
+                      background: "radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%)",
+                      animation: "ripple 1.5s ease-out infinite"
+                    }}
+                  ></div>
+                </div>
+                
+                {/* Enhanced icon with hexagonal background and magnetic effect */}
+                <div className="feature-icon relative mb-6">
+                  <div className={`w-20 h-20 bg-gradient-to-br ${feature.color} rounded-2xl transform rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-lg group-hover:shadow-xl relative overflow-hidden`}>
+                    {/* Icon shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                  </div>
+                  <div className="absolute inset-0 w-20 h-20 bg-white/90 rounded-2xl scale-75 flex items-center justify-center group-hover:scale-80 transition-transform duration-500">
+                    <Icon className="w-10 h-10 text-gray-700 group-hover:text-emerald-600 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
+                  </div>
+                  
+                  {/* Orbital particles around icon */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-0 left-1/2 w-2 h-2 bg-emerald-400/60 rounded-full transform -translate-x-1/2 animate-ping"></div>
+                    <div className="absolute bottom-0 left-1/2 w-2 h-2 bg-teal-400/60 rounded-full transform -translate-x-1/2 animate-ping" style={{ animationDelay: '0.5s' }}></div>
+                    <div className="absolute top-1/2 left-0 w-2 h-2 bg-cyan-400/60 rounded-full transform -translate-y-1/2 animate-ping" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-1/2 right-0 w-2 h-2 bg-green-400/60 rounded-full transform -translate-y-1/2 animate-ping" style={{ animationDelay: '1.5s' }}></div>
+                  </div>
+                  
+                  {/* Floating ring around icon */}
+                  <div className="absolute inset-0 w-20 h-20 rounded-2xl border-2 border-emerald-400/30 opacity-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 animate-pulse"></div>
+                </div>
+                
+                {/* Enhanced content */}
+                <div className="feature-content relative z-10">
+                  <h3 className="text-2xl font-black text-gray-900 mb-4 group-hover:text-emerald-700 transition-colors duration-300 relative">
                     {feature.title}
+                    {/* Text underline effect */}
+                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-teal-500 group-hover:w-full transition-all duration-500"></div>
                   </h3>
                   <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
                     {feature.description}
                   </p>
                 </div>
                 
-                {/* Bottom accent line */}
-                <div className={`absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r ${feature.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl`}></div>
+                {/* Enhanced bottom accent line with pulse */}
+                <div className={`absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r ${feature.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-b-2xl animate-pulse opacity-0 group-hover:opacity-100`}></div>
                 
-                {/* Corner decorations */}
-                <div className="absolute top-4 left-4 w-2 h-2 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute bottom-4 right-4 w-2 h-2 bg-teal-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transitionDelay: '100ms' }}></div>
+                {/* Enhanced corner decorations with pulse */}
+                <div className="absolute top-4 left-4 w-2 h-2 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+                <div className="absolute bottom-4 right-4 w-2 h-2 bg-teal-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" style={{ transitionDelay: '100ms', animationDelay: '0.5s' }}></div>
+                
+                {/* Magnetic field indicator */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none" style={{
+                  background: "conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(16, 185, 129, 0.1) 90deg, transparent 180deg, rgba(16, 185, 129, 0.1) 270deg, transparent 360deg)"
+                }}></div>
               </div>
             )
           })}

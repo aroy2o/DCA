@@ -151,7 +151,7 @@ const Auth = () => {
     setShowConfirmPassword(prev => !prev)
   }, [])
 
-  // Enhanced benefits with modern features
+  // Enhanced benefits with modern features and hover states
   const benefits = useMemo(() => [
     {
       icon: Trophy,
@@ -159,7 +159,10 @@ const Auth = () => {
       description: 'Professional coaching with certified trainers following international standards and proven methodologies.',
       gradient: 'from-amber-500 to-orange-500',
       bgGradient: 'from-amber-50 to-orange-50',
-      iconColor: 'text-amber-600'
+      iconColor: 'text-amber-600',
+      hoverScale: 1.05,
+      hoverRotate: 3,
+      particleColor: '#f59e0b'
     },
     {
       icon: Target,
@@ -167,7 +170,10 @@ const Auth = () => {
       description: 'Individual attention with AI-powered performance tracking and customized training plans for optimal skill development.',
       gradient: 'from-orange-500 to-red-500',
       bgGradient: 'from-orange-50 to-red-50',
-      iconColor: 'text-orange-600'
+      iconColor: 'text-orange-600',
+      hoverScale: 1.05,
+      hoverRotate: -3,
+      particleColor: '#ea580c'
     },
     {
       icon: Users,
@@ -175,7 +181,10 @@ const Auth = () => {
       description: 'Join a passionate community of 500+ cricketers and share your journey to excellence with like-minded athletes.',
       gradient: 'from-red-500 to-rose-500',
       bgGradient: 'from-red-50 to-rose-50',
-      iconColor: 'text-red-600'
+      iconColor: 'text-red-600',
+      hoverScale: 1.05,
+      hoverRotate: 3,
+      particleColor: '#dc2626'
     },
     {
       icon: Sparkles,
@@ -183,7 +192,10 @@ const Auth = () => {
       description: 'State-of-the-art training facilities with VR technology, biomechanics lab, and advanced coaching equipment.',
       gradient: 'from-rose-500 to-pink-500',
       bgGradient: 'from-rose-50 to-pink-50',
-      iconColor: 'text-rose-600'
+      iconColor: 'text-rose-600',
+      hoverScale: 1.05,
+      hoverRotate: -3,
+      particleColor: '#e11d48'
     }
   ], [])
 
@@ -290,43 +302,173 @@ const Auth = () => {
                     return (
                       <motion.div
                         key={index}
-                        className={`${CARD_STYLES.feature} hover:shadow-premium group`}
-                        whileHover={{ scale: 1.02, y: -4 }}
-                        transition={{ duration: 0.3 }}
+                        className={`${CARD_STYLES.feature} hover:shadow-premium group magic-hover relative overflow-hidden cursor-pointer`}
+                        whileHover={{ 
+                          scale: benefit.hoverScale, 
+                          y: -8, 
+                          rotateY: benefit.hoverRotate,
+                          z: 50
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          ease: [0.23, 1, 0.32, 1],
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20
+                        }}
+                        onHoverStart={() => {
+                          // Create floating particles on hover
+                          const particles = document.createElement('div')
+                          particles.className = 'absolute inset-0 pointer-events-none'
+                          particles.innerHTML = Array.from({length: 6}, (_, i) => 
+                            `<div class="absolute w-2 h-2 rounded-full animate-bounce" style="
+                              background: ${benefit.particleColor}40;
+                              left: ${20 + i * 12}%;
+                              top: ${30 + Math.sin(i) * 20}%;
+                              animation-delay: ${i * 0.1}s;
+                              animation-duration: ${1 + i * 0.2}s;
+                            "></div>`
+                          ).join('')
+                          
+                          const card = document.querySelector(`[data-benefit-index="${index}"]`)
+                          if (card) {
+                            card.appendChild(particles)
+                            setTimeout(() => particles.remove(), 1000)
+                          }
+                        }}
+                        data-benefit-index={index}
                       >
-                        <div className="flex items-start space-x-3 sm:space-x-4">
-                          <div className={`w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                            <Icon className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
-                          </div>
+                        {/* Gradient overlay that appears on hover */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${benefit.bgGradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl`}></div>
+                        
+                        {/* Shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        
+                        <div className="flex items-start space-x-3 sm:space-x-4 relative z-10">
+                          <motion.div 
+                            className={`w-12 sm:w-14 h-12 sm:h-14 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center flex-shrink-0 shadow-lg`}
+                            whileHover={{ 
+                              scale: 1.2, 
+                              rotate: 15,
+                              boxShadow: "0 10px 25px rgba(0,0,0,0.2)"
+                            }}
+                            transition={{ 
+                              duration: 0.3,
+                              ease: "backOut"
+                            }}
+                          >
+                            <Icon className="w-6 sm:w-7 h-6 sm:h-7 text-white drop-shadow-md" />
+                          </motion.div>
                           <div className="flex-1">
                             <h4 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 group-hover:text-amber-700 transition-colors duration-300">
                               {benefit.title}
                             </h4>
-                            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                            <p className="text-gray-600 leading-relaxed text-sm sm:text-base group-hover:text-gray-700 transition-colors duration-300">
                               {benefit.description}
                             </p>
                           </div>
                         </div>
+                        
+                        {/* Border glow effect */}
+                        <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-amber-400/30 group-hover:to-orange-400/30 transition-all duration-500"></div>
                       </motion.div>
                     )
                   })}
                 </div>
               </div>
 
-              {/* Enhanced Stats - Responsive grid */}
+              {/* Enhanced Stats - Responsive grid with micro-interactions */}
               <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {stats.map((stat, index) => {
                   const Icon = stat.icon
                   return (
                     <motion.div
                       key={index}
-                      className={`${CARD_STYLES.stat} bg-gradient-to-br ${stat.bgColor} hover:shadow-lg group p-3 sm:p-4`}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      transition={{ duration: 0.3 }}
+                      className={`${CARD_STYLES.stat} bg-gradient-to-br ${stat.bgColor} hover:shadow-lg group p-3 sm:p-4 relative overflow-hidden cursor-pointer magic-hover`}
+                      whileHover={{ 
+                        scale: 1.08, 
+                        y: -5,
+                        rotateY: 5,
+                        rotateX: 2,
+                        z: 30
+                      }}
+                      whileTap={{ 
+                        scale: 0.95,
+                        transition: { duration: 0.1 }
+                      }}
+                      transition={{ 
+                        duration: 0.4,
+                        ease: [0.23, 1, 0.32, 1],
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 15
+                      }}
+                      onHoverStart={() => {
+                        // Add counting animation effect
+                        const numberElement = document.querySelector(`[data-stat-index="${index}"] .stat-number`)
+                        if (numberElement) {
+                          const originalNumber = stat.number
+                          let currentNumber = 0
+                          const target = parseInt(originalNumber) || 0
+                          const increment = Math.max(1, Math.floor(target / 20))
+                          
+                          const counter = setInterval(() => {
+                            currentNumber = Math.min(currentNumber + increment, target)
+                            numberElement.textContent = currentNumber + (originalNumber.includes('%') ? '%' : '+')
+                            
+                            if (currentNumber >= target) {
+                              clearInterval(counter)
+                              numberElement.textContent = originalNumber
+                            }
+                          }, 50)
+                        }
+                      }}
+                      data-stat-index={index}
                     >
-                      <Icon className={`w-6 sm:w-8 h-6 sm:h-8 ${stat.color} mx-auto mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300`} />
-                      <div className={`text-xl sm:text-3xl font-black ${stat.color} mb-1`}>{stat.number}</div>
-                      <div className="text-xs sm:text-sm font-medium text-gray-600">{stat.label}</div>
+                      {/* Animated background pulse */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      {/* Floating sparkles on hover */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {[...Array(3)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="absolute w-1 h-1 bg-white rounded-full animate-ping"
+                            style={{
+                              left: `${20 + i * 30}%`,
+                              top: `${15 + i * 20}%`,
+                              animationDelay: `${i * 0.2}s`,
+                              animationDuration: '1s'
+                            }}
+                          />
+                        ))}
+                      </div>
+                      
+                      {/* Icon with enhanced animation */}
+                      <motion.div
+                        whileHover={{ 
+                          rotate: 360,
+                          scale: 1.2
+                        }}
+                        transition={{ 
+                          duration: 0.6,
+                          ease: "easeInOut"
+                        }}
+                        className="flex justify-center"
+                      >
+                        <Icon className={`w-6 sm:w-8 h-6 sm:h-8 ${stat.color} mb-1 sm:mb-2 drop-shadow-md`} />
+                      </motion.div>
+                      
+                      <div className={`text-xl sm:text-3xl font-black ${stat.color} mb-1 stat-number transition-all duration-300 group-hover:scale-110`}>
+                        {stat.number}
+                      </div>
+                      <div className="text-xs sm:text-sm font-medium text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                        {stat.label}
+                      </div>
+                      
+                      {/* Subtle border glow */}
+                      <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-white/30 transition-all duration-500"></div>
                     </motion.div>
                   )
                 })}
@@ -408,22 +550,61 @@ const Auth = () => {
                           transition={{ duration: 0.4 }}
                           className="space-y-4 sm:space-y-6"
                         >
-                          {/* Enhanced Name Input with Validation */}
-                          <div className="relative group">
-                            <User className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-gray-400 group-focus-within:text-amber-600 transition-colors duration-300" />
-                            <input
+                          {/* Enhanced Name Input with Validation and Micro-interactions */}
+                          <motion.div 
+                            className="relative group"
+                            whileHover={{ scale: 1.02 }}
+                            whileFocus={{ scale: 1.02 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <motion.div
+                              className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-gray-400 group-focus-within:text-amber-600 transition-colors duration-300"
+                              whileHover={{ scale: 1.1, rotate: 5 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <User />
+                            </motion.div>
+                            <motion.input
                               type="text"
                               name="name"
                               placeholder="Your Full Name"
                               value={formData.name}
                               onChange={handleInputChange}
-                              className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-4 sm:py-5 border-2 rounded-2xl bg-gray-50/50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-amber-500/20 focus:bg-white group hover:bg-white text-base sm:text-lg font-medium ${
+                              className={`w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-4 sm:py-5 border-2 rounded-2xl bg-gray-50/50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-amber-500/20 focus:bg-white group hover:bg-white text-base sm:text-lg font-medium hover:shadow-md focus:shadow-lg ${
                                 formErrors.name 
                                   ? 'border-red-500 focus:border-red-500' 
                                   : 'border-gray-200 focus:border-amber-500'
                               }`}
                               required={!isLogin}
+                              whileFocus={{ 
+                                scale: 1.02,
+                                borderColor: "#F59E0B",
+                                boxShadow: "0 0 0 4px rgba(245, 158, 11, 0.1)"
+                              }}
+                              onFocus={(e) => {
+                                // Add typing animation effect
+                                e.target.style.transform = 'scale(1.02)'
+                                e.target.style.borderColor = '#F59E0B'
+                              }}
+                              onBlur={(e) => {
+                                e.target.style.transform = 'scale(1)'
+                                if (!formErrors.name) {
+                                  e.target.style.borderColor = '#E5E7EB'
+                                }
+                              }}
                             />
+                            {/* Success checkmark animation */}
+                            {formData.name && !formErrors.name && (
+                              <motion.div
+                                initial={{ scale: 0, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center"
+                              >
+                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              </motion.div>
+                            )}
                             {formErrors.name && (
                               <motion.p 
                                 initial={{ opacity: 0, y: -10 }}
@@ -433,7 +614,7 @@ const Auth = () => {
                                 {formErrors.name}
                               </motion.p>
                             )}
-                          </div>
+                          </motion.div>
 
                           {/* Enhanced Phone Input with Validation */}
                           <div className="relative group">
@@ -740,39 +921,105 @@ const Auth = () => {
                       </motion.div>
                     )}
 
-                    {/* Enhanced Submit Button with Loading State */}
+                    {/* Enhanced Submit Button with Loading State and Advanced Animations */}
                     <motion.button
                       type="submit"
                       disabled={isLoading}
-                      className={`w-full ${BUTTON_STYLES.primary} py-4 sm:py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden ${
+                      className={`w-full ${BUTTON_STYLES.primary} py-4 sm:py-5 text-lg sm:text-xl font-bold shadow-2xl hover:shadow-amber-500/25 group relative overflow-hidden magic-hover ${
                         isLoading ? 'opacity-75 cursor-not-allowed' : ''
                       }`}
-                      whileHover={!isLoading ? { scale: 1.02 } : {}}
-                      whileTap={!isLoading ? { scale: 0.98 } : {}}
+                      whileHover={!isLoading ? { 
+                        scale: 1.03,
+                        y: -2,
+                        boxShadow: "0 20px 40px rgba(245, 158, 11, 0.3)"
+                      } : {}}
+                      whileTap={!isLoading ? { 
+                        scale: 0.98,
+                        transition: { duration: 0.1 }
+                      } : {}}
+                      transition={{
+                        duration: 0.3,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
+                      onHoverStart={!isLoading ? () => {
+                        // Create ripple effect on hover
+                        const button = document.querySelector('.submit-button')
+                        if (button) {
+                          const ripple = document.createElement('div')
+                          ripple.className = 'absolute inset-0 bg-white/20 rounded-2xl opacity-0'
+                          ripple.style.animation = 'pulse 1s ease-in-out'
+                          button.appendChild(ripple)
+                          setTimeout(() => ripple.remove(), 1000)
+                        }
+                      } : undefined}
                     >
-                      <AnimatePresence mode="wait">
-                        {isLoading ? (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="flex items-center justify-center"
-                          >
-                            <Loader2 className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 animate-spin" />
-                            {isLogin ? 'Signing In...' : 'Creating Account...'}
-                          </motion.div>
-                        ) : (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="flex items-center justify-center group-hover:scale-105 transition-transform duration-300"
-                          >
-                            <span>{isLogin ? 'Sign In to Dashboard' : 'Create My Account'}</span>
-                            <ArrowRight className="w-5 sm:w-6 h-5 sm:h-6 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform duration-300" />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      {/* Animated gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 via-orange-400/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                      
+                      {/* Shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                      
+                      {/* Button content */}
+                      <div className="relative z-10 submit-button">
+                        <AnimatePresence mode="wait">
+                          {isLoading ? (
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.8 }}
+                              className="flex items-center justify-center"
+                              transition={{ duration: 0.3 }}
+                            >
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              >
+                                <Loader2 className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
+                              </motion.div>
+                              <motion.span
+                                animate={{ opacity: [1, 0.7, 1] }}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                              >
+                                {isLogin ? 'Signing In...' : 'Creating Account...'}
+                              </motion.span>
+                            </motion.div>
+                          ) : (
+                            <motion.div
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              className="flex items-center justify-center"
+                              transition={{ duration: 0.3 }}
+                            >
+                              <motion.span
+                                className="group-hover:scale-105 transition-transform duration-300"
+                                whileHover={{ scale: 1.05 }}
+                              >
+                                {isLogin ? 'Sign In to Academy' : 'Join Our Academy'}
+                              </motion.span>
+                              <motion.div
+                                className="ml-2 sm:ml-3"
+                                whileHover={{ x: 3 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <ArrowRight className="w-5 sm:w-6 h-5 sm:h-6" />
+                              </motion.div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                      
+                      {/* Success state animation */}
+                      {isSuccess && (
+                        <motion.div
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          className="absolute inset-0 bg-green-500 rounded-2xl flex items-center justify-center"
+                        >
+                          <CheckCircle className="w-6 h-6 text-white mr-2" />
+                          <span className="text-white font-bold">Success!</span>
+                        </motion.div>
+                      )}
                     </motion.button>
 
                     {/* Enhanced Divider */}
@@ -785,34 +1032,78 @@ const Auth = () => {
                       </div>
                     </div>
 
-                    {/* Enhanced Social Login with Hover Effects */}
+                    {/* Enhanced Social Login with Advanced Hover Effects */}
                     <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       <motion.button
                         type="button"
                         disabled={isLoading}
-                        className={`flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-200 rounded-2xl bg-white hover:bg-gray-50 transition-all duration-300 hover:border-gray-300 group relative overflow-hidden ${
+                        className={`flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-200 rounded-2xl bg-white hover:bg-gray-50 transition-all duration-300 hover:border-gray-300 group relative overflow-hidden magic-hover ${
                           isLoading ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
-                        whileHover={!isLoading ? { scale: 1.02 } : {}}
+                        whileHover={!isLoading ? { 
+                          scale: 1.03, 
+                          y: -2,
+                          boxShadow: "0 8px 25px rgba(0,0,0,0.1)"
+                        } : {}}
                         whileTap={!isLoading ? { scale: 0.98 } : {}}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        onHoverStart={!isLoading ? () => {
+                          // Add ripple effect for Google button
+                          const button = document.querySelector('.google-btn')
+                          if (button) {
+                            const ripple = document.createElement('div')
+                            ripple.className = 'absolute inset-0 bg-gradient-to-r from-blue-100/50 to-red-100/50 rounded-2xl opacity-0'
+                            ripple.style.animation = 'fadeInOut 0.6s ease-out'
+                            button.appendChild(ripple)
+                            setTimeout(() => ripple.remove(), 600)
+                          }
+                        } : undefined}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 relative z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        <motion.img 
+                          src="https://developers.google.com/identity/images/g-logo.png" 
+                          alt="Google" 
+                          className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 relative z-10 google-btn" 
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                        />
                         <span className="font-semibold text-gray-700 group-hover:text-gray-900 text-sm sm:text-base relative z-10">Google</span>
                       </motion.button>
+                      
                       <motion.button
                         type="button"
                         disabled={isLoading}
-                        className={`flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-200 rounded-2xl bg-white hover:bg-gray-50 transition-all duration-300 hover:border-gray-300 group relative overflow-hidden ${
+                        className={`flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 border-2 border-gray-200 rounded-2xl bg-white hover:bg-gray-50 transition-all duration-300 hover:border-gray-300 group relative overflow-hidden magic-hover ${
                           isLoading ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
-                        whileHover={!isLoading ? { scale: 1.02 } : {}}
+                        whileHover={!isLoading ? { 
+                          scale: 1.03, 
+                          y: -2,
+                          boxShadow: "0 8px 25px rgba(59, 130, 246, 0.15)"
+                        } : {}}
                         whileTap={!isLoading ? { scale: 0.98 } : {}}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        onHoverStart={!isLoading ? () => {
+                          // Add pulse effect for Facebook button
+                          const button = document.querySelector('.facebook-btn-icon')
+                          if (button) {
+                            button.style.animation = 'pulse 0.6s ease-in-out'
+                            setTimeout(() => {
+                              button.style.animation = ''
+                            }, 600)
+                          }
+                        } : undefined}
                       >
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="w-5 sm:w-6 h-5 sm:h-6 bg-blue-600 rounded-lg mr-2 sm:mr-3 flex items-center justify-center relative z-10 group-hover:bg-blue-700 transition-colors duration-300">
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        <motion.div 
+                          className="w-5 sm:w-6 h-5 sm:h-6 bg-blue-600 rounded-lg mr-2 sm:mr-3 flex items-center justify-center relative z-10 group-hover:bg-blue-700 transition-colors duration-300 facebook-btn-icon"
+                          whileHover={{ scale: 1.1, rotate: -5 }}
+                          transition={{ duration: 0.3 }}
+                        >
                           <span className="text-white text-xs sm:text-sm font-bold">f</span>
-                        </div>
+                        </motion.div>
                         <span className="font-semibold text-gray-700 group-hover:text-gray-900 text-sm sm:text-base relative z-10">Facebook</span>
                       </motion.button>
                     </div>

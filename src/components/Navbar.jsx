@@ -193,7 +193,7 @@ const Navbar = () => {
                 >
                   <Link
                     to={item.path}
-                    className={`relative flex items-center space-x-2 px-5 py-3 rounded-2xl font-medium transition-all duration-300 group drop-shadow-sm ${
+                    className={`relative flex items-center space-x-2 px-5 py-3 rounded-2xl font-medium transition-all duration-300 group drop-shadow-sm overflow-hidden ${
                       active
                         ? 'text-blue-600 bg-gradient-to-r from-blue-50/60 to-blue-50/40 shadow-sm border border-blue-200/40'
                         : scrolled 
@@ -202,18 +202,70 @@ const Navbar = () => {
                     }`}
                   >
                     <motion.div
-                      whileHover={{ rotate: 10, scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
+                      whileHover={{ 
+                        rotate: 15, 
+                        scale: 1.2,
+                        filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))"
+                      }}
+                      transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
                     >
-                      <Icon className="w-4 h-4" />
+                      <Icon className="w-4 h-4 relative z-10" />
                     </motion.div>
-                    <span>{item.name}</span>
+                    <motion.span
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      className="relative z-10"
+                    >
+                      {item.name}
+                    </motion.span>
+                    
+                    {/* Hover ripple effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                      style={{
+                        background: "radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%)"
+                      }}
+                      whileHover={{
+                        scale: [0.8, 1.2],
+                        opacity: [0, 0.6, 0]
+                      }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    
+                    {/* Shimmer effect on hover */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none"
+                      style={{
+                        background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)"
+                      }}
+                      whileHover={{
+                        x: [-100, 100],
+                        transition: { duration: 0.8, ease: "easeInOut" }
+                      }}
+                    />
                     
                     {item.badge && (
                       <motion.span
                         className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-2 py-0.5 rounded-full shadow-lg"
                         initial={{ scale: 1 }}
-                        animate={{ scale: 1 }}
+                        animate={{ 
+                          scale: [1, 1.1, 1],
+                          boxShadow: [
+                            "0 0 8px rgba(239, 68, 68, 0.3)",
+                            "0 0 16px rgba(239, 68, 68, 0.5)",
+                            "0 0 8px rgba(239, 68, 68, 0.3)"
+                          ]
+                        }}
+                        transition={{ 
+                          duration: 2, 
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                        whileHover={{ 
+                          scale: 1.2,
+                          rotate: [0, -10, 10, 0],
+                          transition: { duration: 0.3 }
+                        }}
                       >
                         {item.badge}
                       </motion.span>
@@ -248,8 +300,23 @@ const Navbar = () => {
             >
               <Link
                 to="/auth"
-                className="group relative inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 hover:from-blue-700 hover:via-purple-700 hover:to-red-700 text-white font-semibold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 overflow-hidden"
+                className="group relative inline-flex items-center px-8 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 hover:from-blue-700 hover:via-purple-700 hover:to-red-700 text-white font-semibold rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 overflow-hidden border border-white/20"
               >
+                {/* Animated background gradient */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-red-500 opacity-0 group-hover:opacity-100"
+                  animate={{
+                    background: [
+                      "linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444)",
+                      "linear-gradient(45deg, #ef4444, #3b82f6, #8b5cf6)",
+                      "linear-gradient(45deg, #8b5cf6, #ef4444, #3b82f6)",
+                      "linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                
+                {/* Shimmer effect */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   animate={{
@@ -262,8 +329,72 @@ const Navbar = () => {
                     ease: "easeInOut"
                   }}
                 />
-                <Sparkles className="w-4 h-4 mr-2 relative z-10" />
-                <span className="relative z-10">Join Now</span>
+                
+                {/* Pulse ring on hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-white/30 opacity-0 group-hover:opacity-100"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0, 0.6, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+                
+                <motion.div
+                  whileHover={{ 
+                    rotate: [0, -10, 10, 0], 
+                    scale: 1.1,
+                    filter: "drop-shadow(0 0 12px rgba(59, 130, 246, 0.6))"
+                  }}
+                  transition={{ duration: 0.4, type: "spring" }}
+                  className="relative z-10"
+                >
+                  <Sparkles className="w-4 h-4 mr-2" />
+                </motion.div>
+                
+                <motion.span 
+                  className="relative z-10"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Join Now
+                </motion.span>
+                
+                {/* Floating particles effect */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 w-1 h-1 bg-white/80 rounded-full opacity-0 group-hover:opacity-100"
+                  style={{ x: -2, y: -2 }}
+                  animate={{
+                    y: [-20, 20],
+                    x: [-10, 10],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div
+                  className="absolute top-1/2 left-1/2 w-1 h-1 bg-white/60 rounded-full opacity-0 group-hover:opacity-100"
+                  style={{ x: 10, y: -8 }}
+                  animate={{
+                    y: [-15, 25],
+                    x: [-5, 15],
+                    opacity: [0, 0.8, 0]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 0.5,
+                    ease: "easeInOut"
+                  }}
+                />
               </Link>
             </motion.div>
           </div>
