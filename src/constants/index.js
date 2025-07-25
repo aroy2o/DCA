@@ -2,26 +2,16 @@
 // This file is kept for backward compatibility
 // Use src/config/index.js for new constants
 
-import { 
-  APP_CONFIG, 
-  CONTACT_INFO, 
-  SOCIAL_LINKS, 
-  ANIMATION_CONFIG, 
-  LAYOUT_CONFIG 
-} from '../config/index.js'
+import { createContext } from 'react'
 
-// Re-export for backward compatibility
-export const APP_NAME = APP_CONFIG.NAME
-export const APP_DESCRIPTION = APP_CONFIG.DESCRIPTION
+export const AuthContext = createContext({
+  isAuthenticated: false,
+  login: () => {},
+  logout: () => {},
+  user: null,
+})
 
-export { CONTACT_INFO, SOCIAL_LINKS }
-
-export const ANIMATION_DURATION = ANIMATION_CONFIG.DURATION
-export const LAYOUT_STYLES = {
-  container: LAYOUT_CONFIG.CONTAINER,
-  section: LAYOUT_CONFIG.SECTION,
-  sectionLarge: LAYOUT_CONFIG.SECTION_LARGE
-}
+// You can add other constants here if needed, but do not export undefined or missing values.
 
 // Breakpoints
 export const BREAKPOINTS = {

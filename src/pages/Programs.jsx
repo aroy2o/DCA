@@ -462,12 +462,12 @@ const Programs = () => {
                 label: 'Floodlit Evening Practice',
               },
               {
-                src: 'https://content.jdmagicbox.com/v2/comp/hyderabad/b8/040pxx40.xx40.230731133519.f9b8/catalogue/pitch-kraft-indoor-cricket-nets-with-bowling-machines-kphb-colony-hyderabad-4jg1t4kkhe.jpg',
+                src: 'https://media.istockphoto.com/id/998865276/photo/cricket-practice-nets-and-stumps.jpg?s=612x612&w=0&k=20&c=P7dwdK0hY5yWevIv7GeAwQd92s0iWDegHAvMoDzZ77Y=',
                 alt: 'Indoor Nets',
                 label: 'Indoor Training Arena',
               },
               {
-                src: 'https://content.jdmagicbox.com/v2/comp/guwahati/r7/9999px361.x361.240227183756.r6r7/catalogue/maximum-fitness-hatigaon-guwahati-fitness-centres-vce42lqdhf.jpg',
+                src: 'https://content.jdmagicbox.com/v2/comp/bangalore/g9/080pxx80.xx80.221118234004.x1g9/catalogue/4k-fitness-club-langford-road-bangalore-fitness-centres-17cn7ht1gx.jpg',
                 alt: 'Fitness Zone',
                 label: 'Modern Fitness Zone',
               },

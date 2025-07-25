@@ -216,7 +216,7 @@ const About = () => {
       <div className="fixed inset-0 -z-50 bg-gradient-to-br from-white via-amber-50/5 to-orange-50/10"></div>
 
       {/* Hero Section - Consistent with Home styling */}
-      <section className="relative mt-25 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-white">
+      <section className="relative mt-25 min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50/30 to-white px-2 sm:px-0">
         {/* Consistent Hero Background System */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Hero-specific subtle pattern */}
@@ -243,10 +243,10 @@ const About = () => {
           <div className="absolute right-0 bottom-1/3 h-px w-2/3 bg-gradient-to-l from-transparent via-gray-200/30 to-transparent"></div>
         </div>
         
-        <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+        <div ref={heroRef} className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 text-center z-10">
           <div className="max-w-6xl mx-auto">
             {/* Consistent Hero Badge */}
-            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+            <div className="inline-flex items-center px-4 sm:px-10 py-3 sm:py-5 mb-8 sm:mb-16 relative text-xs sm:text-base">
               <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
               <div className="relative flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -264,22 +264,22 @@ const About = () => {
             </div>
             
             {/* Consistent Typography */}
-            <div className="mb-16">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
-                <span className="block text-gray-900 mb-6 drop-shadow-sm">
+            <div className="mb-8 sm:mb-16">
+              <h1 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-10 leading-tight sm:leading-none tracking-tight">
+                <span className="block text-gray-900 mb-2 sm:mb-6 drop-shadow-sm">
                   Crafting Cricket
                 </span>
-                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
-                  Champions Since
+                <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-2 sm:mb-6 filter drop-shadow-lg">
+                  Champion Since
                 </span>
-                <span className="block text-gray-800 text-5xl md:text-6xl lg:text-7xl">
-                  2009
+                <span className="block text-gray-800 text-2xl sm:text-5xl md:text-6xl lg:text-7xl">
+                     2009
                 </span>
               </h1>
             </div>
             
             {/* Consistent Subtitle */}
-            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-20">
+            <p className="text-base sm:text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-8 sm:mb-20">
               From humble beginnings to becoming 
               <span className="text-amber-600 font-black"> West Bengal's most elite</span> cricket academy with 
               <span className="text-green-600 font-black"> 15+ years of proven excellence</span> and 
@@ -287,7 +287,7 @@ const About = () => {
             </p>
 
             {/* Consistent Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-8 mb-20">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-8 mb-8 sm:mb-20">
               {[
                 { icon: CheckCircle, text: 'BCCI CERTIFIED', color: 'from-green-500 to-emerald-600' },
                 { icon: Trophy, text: 'AWARD WINNING', color: 'from-amber-500 to-orange-600' },
@@ -327,13 +327,13 @@ const About = () => {
       </section>
 
       {/* Achievement Stats - Consistent styling */}
-      <section ref={statsRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+      <section ref={statsRef} className="py-10 sm:py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
           <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Consistent Header Style */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
@@ -351,7 +351,7 @@ const About = () => {
               Every statistic tells a story of dedication, growth, and the relentless pursuit of excellence.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
             {achievements.map((achievement, index) => {
               const Icon = achievement.icon
               return (
@@ -379,27 +379,27 @@ const About = () => {
       </section>
 
       {/* --- TESTIMONIALS SECTION (ADDED) --- */}
-      <section className="relative py-16 sm:py-24 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 overflow-hidden">
+      <section className="relative py-10 sm:py-16 md:py-24 bg-gradient-to-br from-white via-orange-50/30 to-amber-50/20 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.04)_0%,transparent_60%)]"></div>
           <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-orange-400/10 to-amber-400/10 rounded-full blur-2xl animate-pulse"></div>
           <div className="absolute bottom-10 right-10 w-56 h-56 bg-gradient-to-br from-amber-400/10 to-orange-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-          <div className="text-center mb-12 sm:mb-16">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 z-10">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-orange-200/50 rounded-2xl text-gray-800 font-semibold mb-6 shadow-lg shadow-orange-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 group">
               <Star className="w-5 h-5 mr-2 text-orange-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
               <span className="text-sm tracking-wide font-bold">TESTIMONIALS</span>
               <div className="w-2 h-2 bg-orange-500 rounded-full ml-3 animate-pulse"></div>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black text-gray-900 mb-2 sm:mb-4 leading-tight">
               What Our Champions Say
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium px-4 sm:px-0">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium px-2 sm:px-4 md:px-0">
               Real stories from our students and parents about their journey with Doars Cricket Academy.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {[
               {
                 name: 'Amit S.',
@@ -440,7 +440,7 @@ const About = () => {
       </section>
 
       {/* Mission & Values - Consistent styling */}
-      <section ref={missionRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
+      <section ref={missionRef} className="py-10 sm:py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0">
@@ -452,7 +452,7 @@ const About = () => {
           </div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Consistent Header Style */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-10 py-5 mb-16 relative">
@@ -539,14 +539,14 @@ const About = () => {
       </section>
 
       {/* Timeline - Consistent styling */}
-      <section ref={timelineRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+      <section ref={timelineRef} className="py-10 sm:py-20 lg:py-24 relative bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
           <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Consistent Header Style */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-6 py-3 bg-white/95 backdrop-blur-xl border border-amber-200/50 rounded-2xl text-gray-800 font-semibold mb-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-500 group">
@@ -570,9 +570,9 @@ const About = () => {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-8 lg:left-1/2 transform lg:-translate-x-0.5 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 via-orange-500 to-red-500 opacity-30"></div>
+            <div className="absolute left-4 sm:left-8 lg:left-1/2 transform lg:-translate-x-0.5 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 via-orange-500 to-red-500 opacity-30"></div>
             
-            <div className="space-y-12">
+            <div className="space-y-8 sm:space-y-12">
               {timeline.map((item, index) => {
                 const Icon = item.icon
                 const isEven = index % 2 === 0
@@ -580,13 +580,13 @@ const About = () => {
                 return (
                   <div
                     key={index}
-                    className={`relative flex items-center ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}
+                    className={`relative flex flex-col lg:flex-row ${isEven ? '' : 'lg:flex-row-reverse'}`}
                   >
                     {/* Timeline marker */}
                     <div className="absolute left-8 lg:left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-amber-500 rounded-full z-10 shadow-lg"></div>
                     
                     {/* Content */}
-                    <div className={`flex-1 ${isEven ? 'lg:pr-16 pl-20 lg:pl-0' : 'lg:pl-16 pl-20 lg:pr-0'}`}>
+                    <div className={`flex-1 ${isEven ? 'lg:pr-16 pl-8 sm:pl-20 lg:pl-0' : 'lg:pl-16 pl-8 sm:pl-20 lg:pr-0'}`}>
                       <div className="bg-white/95 backdrop-blur-xl border border-amber-200/30 rounded-3xl p-8 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-orange-500/20 transition-all duration-500 interactive-card">
                         <div className="flex items-center mb-6">
                           <div className={`w-16 h-16 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center mr-6 shadow-lg`}>
@@ -609,7 +609,7 @@ const About = () => {
       </section>
 
       {/* Coaches - Consistent styling */}
-      <section ref={coachesRef} className="py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
+      <section ref={coachesRef} className="py-10 sm:py-20 lg:py-24 relative bg-gradient-to-br from-white via-gray-50/30 to-white">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0">
@@ -621,7 +621,7 @@ const About = () => {
           </div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Consistent Header Style */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-10 py-5 mb-16 relative">
@@ -698,17 +698,17 @@ const About = () => {
       <SectionSeparator variant="wave" />
 
       {/* CTA Section - Consistent styling */}
-      <section ref={ctaRef} className="py-20 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
+      <section ref={ctaRef} className="py-10 sm:py-20 relative overflow-hidden bg-gradient-to-br from-amber-50/30 via-white to-orange-50/20">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.02)_0%,transparent_50%)]"></div>
           <div className="absolute inset-0 opacity-[0.02] h-full w-full bg-[linear-gradient(to_right,#F59E0B_1px,transparent_1px),linear-gradient(to_bottom,#F59E0B_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+        <div className="relative max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 text-center z-10">
           <div className="max-w-6xl mx-auto">
             {/* Consistent Header Style */}
-            <div className="inline-flex items-center px-10 py-5 mb-16 relative">
+            <div className="inline-flex items-center px-4 sm:px-10 py-3 sm:py-5 mb-8 sm:mb-16 relative">
               <div className="absolute inset-0 bg-gradient-to-r from-white/98 via-gray-50/95 to-white/98 backdrop-blur-2xl rounded-3xl shadow-2xl border-2 border-gray-100/50"></div>
               <div className="relative flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -725,16 +725,16 @@ const About = () => {
               </div>
             </div>
             
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-10 leading-none tracking-tight">
+            <h2 className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 sm:mb-10 leading-tight sm:leading-none tracking-tight">
               <span className="block text-gray-900 mb-6 drop-shadow-sm">
                 Ready to Join Our
               </span>
-              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-6 filter drop-shadow-lg">
+              <span className="block bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent mb-2 sm:mb-6 filter drop-shadow-lg">
                 Cricket Family?
               </span>
             </h2>
             
-            <p className="text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-20">
+            <p className="text-base sm:text-2xl md:text-3xl text-gray-600 leading-relaxed font-semibold max-w-5xl mx-auto mb-8 sm:mb-20">
               Experience the difference at 
               <span className="text-amber-600 font-black"> Doars Cricket Academy.</span> Book your 
               <span className="text-green-600 font-black"> free trial session</span> and discover why we're 
@@ -742,7 +742,7 @@ const About = () => {
             </p>
             
             {/* Consistent Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-8 justify-center mb-20">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center mb-8 sm:mb-20">
               <button className="group relative inline-flex items-center px-16 py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-black text-2xl rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-110 transform overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500 via-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <Trophy className="w-8 h-8 mr-5 group-hover:rotate-12 group-hover:scale-125 transition-transform duration-500 relative z-10" />
@@ -757,7 +757,7 @@ const About = () => {
             </div>
             
             {/* Consistent Contact Info */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 max-w-4xl mx-auto">
               {[
                 { icon: Phone, label: 'Call Us', value: '+91 98765 43210', color: 'from-green-500 to-emerald-600' },
                 { icon: Mail, label: 'Email Us', value: 'info@doarscricket.com', color: 'from-amber-500 to-orange-600' },
